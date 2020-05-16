@@ -1,7 +1,9 @@
 import React from 'react'
 
-import CustomNavBar from '../../components/CustomNavBar'
-
-const HomePage = () => <CustomNavBar />
+const HomePage = () => (
+	<>
+		
+	</>
+)
 
 export default HomePage
