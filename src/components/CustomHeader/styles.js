@@ -6,6 +6,7 @@ export const CustomHeaderContainer = styled.header`
 	display: flex;
 	height: calc(100vh - 95px);
 	justify-content: center;
+	min-height: 500px;
 	position: relative;
 `
 

@@ -6,6 +6,8 @@ const getFillColor = fill => {
 	switch (fill) {
 		case 'purple':
 			return Colors.PURPLE
+		case 'pink':
+			return Colors.PINK
 		case 'white':
 			return '#FFFFFF'
 		default:
@@ -24,9 +26,13 @@ const getFill = ({ fill }) => css`
 	}
 `
 
+const getMarginRight = ({ marginRight = 0 }) => css`
+	margin-right: ${marginRight}px;
+`
+
 export const CustomIconContainer = styled.i`
 	${getFill}
 	${getSize}
+	${getMarginRight}
 	display: inline-block;
-	width: 20px;
 `
