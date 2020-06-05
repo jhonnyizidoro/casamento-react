@@ -8,6 +8,7 @@ export const PhotoGalleryContainer = styled.div`
 	max-height: ${({ maxHeight }) => maxHeight}px;
 	overflow: hidden;
 	padding-bottom: 120px;
+	transition: 1s;
 `
 
 export const PhotoGalleryImage = styled.img`
