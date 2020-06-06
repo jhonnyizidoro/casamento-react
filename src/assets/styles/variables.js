@@ -4,6 +4,8 @@ export const Colors = {
 	ORANGE: '#EF8C17',
 	PINK: '#C5A9A6',
 	LIGHT: '#BCBCBC',
+	FACEBOOK: '#3A559F',
+	GOOGLE: '#EA4335',
 }
 
 export const Shadows = {

@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 import { Colors } from '../../assets/styles/variables'
 
@@ -15,13 +16,17 @@ export const NavBarLogoImage = styled.img`
 
 export const NavBarLinks = styled.div``
 
-export const NavBarLink = styled.span`
+const navBarItemStyles = () => css`
 	border-bottom: 2px solid transparent;
 	cursor: pointer;
 	font-size: .85rem;
 	padding: 10px;
 	transition: 200ms;
-	&:hover {
+	&:hover,
+	&.active {
 		border-bottom-color: ${Colors.ORANGE};
 	}
 `
+
+export const NavBarItemAsLink = styled(NavLink)`${navBarItemStyles}`
+export const NavBarItemAsText = styled.span`${navBarItemStyles}`

@@ -16,7 +16,7 @@ const EventCountdown = () => {
 	const [chronometer, setChronometer] = useState({})
 
 	useEffect(() => {
-		setInterval(() => {
+		const interval = setInterval(() => {
 			const now = new Date().getTime()
 			const distance = date - now
 			setChronometer({
@@ -26,6 +26,7 @@ const EventCountdown = () => {
 				seconds: Math.floor((distance % 60000) / 1000),
 			})
 		}, 1000)
+		return () => clearInterval(interval)
 	})
 
 	return (

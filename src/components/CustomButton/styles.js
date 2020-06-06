@@ -7,18 +7,23 @@ const getBackgroundColor = background => {
 	switch (background) {
 		case 'orange':
 			return Colors.ORANGE
+		case 'facebook':
+			return Colors.FACEBOOK
+		case 'google':
+			return Colors.GOOGLE
 		default:
 			return Colors.PURPLE
 	}
 }
 
-const getStyles = ({ color }) => css`
+const getStyles = ({ color, marginBottom = 0 }) => css`
 	background: ${getBackgroundColor(color)};
 	box-shadow: ${Shadows.SMALL};
 	color: #FFFFFF;
 	cursor: pointer;
 	display: inline-block;
 	border: 0;
+	margin-bottom: ${marginBottom}px;
 	padding: 10px 25px;
 	transition: 350ms;
 	&:hover {

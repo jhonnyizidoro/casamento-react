@@ -1,23 +1,44 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+
+import { selectCurrentUser } from '../../redux/user/user.selectors'
+import { logout } from '../../redux/user/user.actions'
 
 import CustomContainer from '../CustomContainer'
 import LogoImage from '../../assets/images/logos/logo.png'
 
-import { NavBarContainer, NavBarLogoImage, NavBarLinks, NavBarLink } from './styles'
+import {
+	NavBarContainer,
+	NavBarLogoImage,
+	NavBarLinks,
+	NavBarItemAsLink,
+	NavBarItemAsText,
+} from './styles'
 
-const CustomNavBar = () => (
+const CustomNavBar = ({ currentUser, logout }) => (
 	<CustomContainer>
 		<NavBarContainer>
 			<NavBarLogoImage src={LogoImage} />
 			<NavBarLinks>
-				<NavBarLink>NOSSA HISTÓRIA</NavBarLink>
-				<NavBarLink>LISTA DE PRESENTES</NavBarLink>
-				<NavBarLink>GALERIA</NavBarLink>
-				<NavBarLink>CONFIRMA PRESENÇA</NavBarLink>
-				<NavBarLink>SOBRE O CASAMENTO</NavBarLink>
+				<NavBarItemAsLink exact activeClassName="active" to="/">INÍCIO</NavBarItemAsLink>
+				{
+					currentUser ?
+						<NavBarItemAsText onClick={logout}>SAIR</NavBarItemAsText>
+						:
+						<NavBarItemAsLink exact activeClassName="active" to="/sign-in">LOGIN</NavBarItemAsLink>
+				}
 			</NavBarLinks>
 		</NavBarContainer>
 	</CustomContainer>
 )
 
-export default CustomNavBar
+const mapStateToProps = createStructuredSelector({
+	currentUser: selectCurrentUser,
+})
+
+const mapDispatchToProps = dispatch => ({
+	logout: () => dispatch(logout()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomNavBar)
