@@ -1,31 +1,21 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
-import { createStructuredSelector } from 'reselect'
-import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
 
-import { selectCurrentUser } from './redux/user/user.selectors'
-
+import ProtectedRoute from './components/ProtectedRoute'
 import CustomNavBar from './components/CustomNavBar'
 import HomePage from './pages/Home'
 import SignInPage from './pages/SignIn'
+import InsertProductPage from './pages/InsertProduct'
 
-const App = ({ currentUser }) => (
+const App = () => (
 	<>
 		<CustomNavBar />
 		<Switch>
 			<Route exact path="/" component={HomePage} />
-			<Route exact path="/sign-in" render={() =>
-				currentUser ?
-					<Redirect to="/" />
-					:
-					<SignInPage />
-			} />
+			<ProtectedRoute exact path="/sign-in" component={SignInPage} forGuestsOnly />
+			<ProtectedRoute exact path="/insert-product" component={InsertProductPage} />
 		</Switch>
 	</>
 )
 
-const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser,
-})
-
-export default connect(mapStateToProps)(App)
+export default App
