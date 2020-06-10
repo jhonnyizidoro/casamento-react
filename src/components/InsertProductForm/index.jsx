@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+
+import { insertProductStart } from '../../redux/product/product.actions'
 
 import CustomForm from '../../components/CustomForm'
 import FormInput from '../../components/FormInput'
@@ -6,7 +9,7 @@ import CustomButton from '../../components/CustomButton'
 import FormSelect from '../../components/FormSelect'
 import ImageInput from '../ImageInput'
 
-const InsertProductForm = () => {
+const InsertProductForm = ({ insertProductStart }) => {
 	const [product, setProduct] = useState({})
 
 	const handleChange = ({ target }) => {
@@ -19,7 +22,7 @@ const InsertProductForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault()
-		console.log(product)
+		insertProductStart(product)
 	}
 
 	return (
@@ -27,21 +30,25 @@ const InsertProductForm = () => {
 			<ImageInput
 				name="image"
 				onChange={handleChange}
+				required
 			/>
 			<FormInput
 				name="name"
 				placeholder="Nome"
 				onChange={handleChange}
+				required
 			/>
 			<FormInput
 				name="value"
 				placeholder="Valor"
 				onChange={handleChange}
+				required
 			/>
 			<FormSelect
 				name="category"
 				placeholder="Selecione a categoria"
 				onChange={handleChange}
+				required
 				items={[
 					'Cozinha',
 					'Quarto',
@@ -53,4 +60,8 @@ const InsertProductForm = () => {
 	)
 }
 
-export default InsertProductForm
+const mapDispatchToProps = dispatch => ({
+	insertProductStart: product => dispatch(insertProductStart(product)),
+})
+
+export default connect(null, mapDispatchToProps)(InsertProductForm)

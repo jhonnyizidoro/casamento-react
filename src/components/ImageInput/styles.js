@@ -26,5 +26,5 @@ export const ImageInputElement = styled.img`
 `
 
 export const ImageInputInput = styled.input`
-	visibility: hidden;
+	opacity: 0;
 `

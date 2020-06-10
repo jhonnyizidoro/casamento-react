@@ -8,8 +8,12 @@ function* signInWithFacebook() {
 	try {
 		const { user } = yield auth.signInWithPopup(facebookProvider)
 		yield put(signInSuccess(user))
-	} catch (error) {
-		yield put(setAlert(error))
+	} catch ({ message }) {
+		yield put(setAlert({
+			type: 'error',
+			title: 'ERRO AO REALIZAR O LOGIN',
+			message,
+		}))
 	}
 }
 
@@ -17,8 +21,12 @@ function* signInWithGoogle() {
 	try {
 		const { user } = yield auth.signInWithPopup(googleProvider)
 		yield put(signInSuccess(user))
-	} catch (error) {
-		yield put(setAlert(error))
+	} catch ({ message }) {
+		yield put(setAlert({
+			type: 'error',
+			title: 'ERRO AO REALIZAR O LOGIN',
+			message,
+		}))
 	}
 }
 

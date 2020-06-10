@@ -3,12 +3,14 @@ import { Route, Switch } from 'react-router-dom'
 
 import ProtectedRoute from './components/ProtectedRoute'
 import CustomNavBar from './components/CustomNavBar'
+import AppAlert from './components/AppAlert'
 import HomePage from './pages/Home'
 import SignInPage from './pages/SignIn'
 import InsertProductPage from './pages/InsertProduct'
 
 const App = () => (
 	<>
+		<AppAlert />
 		<CustomNavBar />
 		<Switch>
 			<Route exact path="/" component={HomePage} />

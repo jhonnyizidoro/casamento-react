@@ -4,7 +4,7 @@ import NoImage from '../../assets/images/products/no-image.png'
 
 import { ImageInputLabel, ImageInputElement, ImageInputInput } from './styles'
 
-export const ImageInput = ({ name, onChange }) => {
+export const ImageInput = ({ name, onChange, ...otherProps }) => {
 	const id = Math.floor(Math.random() * 1000)
 	const [src, setSrc] = useState(NoImage)
 
@@ -26,6 +26,7 @@ export const ImageInput = ({ name, onChange }) => {
 				type="file"
 				onChange={handleChange}
 				accept="image/png, image/jpeg, image/jpg"
+				{...otherProps}
 			/>
 		</ImageInputLabel>
 	)
