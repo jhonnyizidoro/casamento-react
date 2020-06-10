@@ -22,6 +22,7 @@ const CustomNavBar = ({ currentUser, logout }) => (
 			<NavBarLogoImage src={LogoImage} />
 			<NavBarLinks>
 				<NavBarItemAsLink exact activeClassName="active" to="/">INÍCIO</NavBarItemAsLink>
+				<NavBarItemAsLink exact activeClassName="active" to="/products">PRODUTOS</NavBarItemAsLink>
 				{
 					currentUser ?
 						<>

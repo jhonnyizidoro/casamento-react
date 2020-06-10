@@ -2,6 +2,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects'
 import ProductActionTypes from './product.types'
 import { setAlert } from '../app/app.actions'
 import { firestore } from '../../utils/firebase'
+import { fetchProductsSuccess } from './product.actions'
 
 function* insertProduct({ payload }) {
 	try {
@@ -19,12 +20,31 @@ function* insertProduct({ payload }) {
 	}
 }
 
+function* fetchProducts() {
+	try {
+		const snapshot = yield firestore.collection('products').get()
+		const products = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+		yield put(fetchProductsSuccess(products))
+	} catch ({ message }) {
+		yield put(setAlert({
+			type: 'error',
+			title: 'ERRO AO BUSCAR PRODUTOS',
+			message,
+		}))
+	}
+}
+
 function* onInsertProductStart() {
 	yield takeLatest(ProductActionTypes.INSERT_PRODUCT_START, insertProduct)
+}
+
+function* onFetchProductsStart() {
+	yield takeLatest(ProductActionTypes.FETCH_PRODUCTS_START, fetchProducts)
 }
 
 export default function* productSagas() {
 	yield all([
 		call(onInsertProductStart),
+		call(onFetchProductsStart),
 	])
 }

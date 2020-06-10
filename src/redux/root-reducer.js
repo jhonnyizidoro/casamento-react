@@ -17,7 +17,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
 	user: userReducer,
 	app: appReducer,
-	products: productReducer,
+	product: productReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer)
