@@ -3,7 +3,7 @@ export const Colors = {
 	PURPLE: '#525278',
 	ORANGE: '#EF8C17',
 	PINK: '#C5A9A6',
-	MUTED: '#919191',
+	MUTED: '#646464',
 	LIGHT: '#BCBCBC',
 	FACEBOOK: '#3A559F',
 	GOOGLE: '#EA4335',

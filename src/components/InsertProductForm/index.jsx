@@ -42,6 +42,7 @@ const InsertProductForm = ({ insertProductStart }) => {
 				name="value"
 				placeholder="Valor"
 				onChange={handleChange}
+				type="number"
 				required
 			/>
 			<FormSelect

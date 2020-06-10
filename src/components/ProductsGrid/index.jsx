@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
@@ -7,6 +7,7 @@ import { fetchProductsStart } from '../../redux/product/product.actions'
 
 import CustomContainer from '../CustomContainer'
 import CustomButton from '../CustomButton'
+import PaymentButton from '../PaymentButton'
 
 import {
 	ProductsGridContainer,
@@ -19,28 +20,39 @@ import {
 } from './styles'
 
 const ProductsGrid = ({ products, fetchProductsStart }) => {
+	const [paymentValue, setPaymentValue] = useState(false)
+
 	useEffect(() => {
 		fetchProductsStart()
 	}, [fetchProductsStart])
 
-	return (<CustomContainer>
-		<ProductsGridContainer>
+	return (
+		<CustomContainer>
 			{
-				products && products.map(({ id, name, image, category, value }) => (
-					<ProductsGridItem key={id}>
-						<ProductsGridFigure>
-							<ProductsGridImage src={image} />
-						</ProductsGridFigure>
-						<ProductsGridName>{name}</ProductsGridName>
-						<ProductsGridCategory>{category}</ProductsGridCategory>
-						<ProductsGridValue>{value}</ProductsGridValue>
-						<CustomButton type="button" color="orange">COMPRAR</CustomButton>
-					</ProductsGridItem>
-				))
+				paymentValue && <PaymentButton value={paymentValue} onClose={() => setPaymentValue(false)} />
 			}
-		</ProductsGridContainer>
-	</CustomContainer>)
-
+			<ProductsGridContainer>
+				{
+					products && products.map(({ id, name, image, category, value }) => (
+						<ProductsGridItem key={id}>
+							<ProductsGridFigure>
+								<ProductsGridImage src={image} />
+							</ProductsGridFigure>
+							<ProductsGridName>{name}</ProductsGridName>
+							<ProductsGridCategory>{category}</ProductsGridCategory>
+							<ProductsGridValue>R${value}</ProductsGridValue>
+							<CustomButton
+								type="button"
+								color="orange"
+								onClick={() => setPaymentValue(value)}>
+								COMPRAR
+							</CustomButton>
+						</ProductsGridItem>
+					))
+				}
+			</ProductsGridContainer>
+		</CustomContainer>
+	)
 }
 
 const mapStateToProps = createStructuredSelector({

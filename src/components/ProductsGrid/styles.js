@@ -34,7 +34,7 @@ export const ProductsGridImage = styled.img`
 `
 
 export const ProductsGridName = styled.div`
-	color: ${Colors.PURPLE};
+	color: ${Colors.DARK};
 	margin-top: 10px;
 	text-transform: uppercase;
 `
