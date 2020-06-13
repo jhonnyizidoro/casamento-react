@@ -7,7 +7,7 @@ export const FormSelectElement = styled.select`
 	font-family: ${Fonts.CONDENSED};
 	font-size: 1.2rem;
 	margin-bottom: 10px;
-	padding: 10px;
+	padding: 9px;
 `
 
 export const FormSelectOption = styled.option``
