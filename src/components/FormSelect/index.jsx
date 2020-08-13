@@ -4,9 +4,17 @@ import { FormSelectElement, FormSelectOption } from './styles'
 
 const FormSelect = ({ items, placeholder, ...otherProps }) => (
 	<FormSelectElement {...otherProps}>
-		<FormSelectOption value="">{placeholder}</FormSelectOption>
 		{
-			items.map(item => <FormSelectOption key={item}>{item}</FormSelectOption>)
+			placeholder && <FormSelectOption value="">{placeholder}</FormSelectOption>
+		}
+		{
+			items.map(item => <FormSelectOption
+					key={item.value}
+					value={item.value}
+				>
+					{item.label}
+				</FormSelectOption>,
+			)
 		}
 	</FormSelectElement>
 )

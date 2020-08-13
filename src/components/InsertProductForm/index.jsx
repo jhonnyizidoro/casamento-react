@@ -51,9 +51,9 @@ const InsertProductForm = ({ insertProductStart }) => {
 				onChange={handleChange}
 				required
 				items={[
-					'Cozinha',
-					'Quarto',
-					'Churrasco',
+					{ label: 'Cozinha', value: 'Cozinha' },
+					{ label: 'Quarto', value: 'Quarto' },
+					{ label: 'Churrasco', value: 'Churrasco' },
 				]}
 			/>
 			<CustomButton type="submit" color="orange">CADASTRAR PRODUTO</CustomButton>

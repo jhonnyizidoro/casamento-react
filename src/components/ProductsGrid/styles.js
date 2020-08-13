@@ -5,7 +5,7 @@ export const ProductsGridContainer = styled.div`
 	display: grid;
 	grid-gap: 30px 15px;
 	grid-template-columns: repeat(4, 1fr);
-	margin-bottom: 80px;
+	margin: 20px 0 80px;
 `
 
 export const ProductsGridTitle = styled.h1`

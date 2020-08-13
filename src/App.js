@@ -8,16 +8,18 @@ import HomePage from './pages/Home'
 import SignInPage from './pages/SignIn'
 import InsertProductPage from './pages/InsertProduct'
 import ProductsPage from './pages/Products'
+import PaymentPage from './pages/Payment'
 
 const App = () => (
 	<>
-		<AppAlert />
-		<CustomNavBar />
+		<AppAlert/>
+		<CustomNavBar/>
 		<Switch>
-			<Route exact path="/" component={HomePage} />
-			<ProtectedRoute exact path="/sign-in" component={SignInPage} forGuestsOnly />
-			<ProtectedRoute exact path="/insert-product" component={InsertProductPage} />
-			<ProtectedRoute exact path="/products" component={ProductsPage} />
+			<Route exact path="/" component={HomePage}/>
+			<ProtectedRoute exact path="/sign-in" component={SignInPage} forGuestsOnly/>
+			<ProtectedRoute exact path="/insert-product" component={InsertProductPage}/>
+			<ProtectedRoute exact path="/products" component={ProductsPage}/>
+			<ProtectedRoute exact path="/payment/:id" component={PaymentPage}/>
 		</Switch>
 	</>
 )

@@ -20,7 +20,7 @@ const ProductsGrid = ({ products, fetchProductsStart }) => {
 			<ProductsGridTitle>Produtos disponíveis</ProductsGridTitle>
 			<ProductsGridContainer>
 				{
-					products && products.map(({ id, ...otherProps }) => <ProductsGridItem key={id} {...otherProps} />)
+					products && products.map(product => <ProductsGridItem key={product.id} {...product} />)
 				}
 			</ProductsGridContainer>
 		</CustomContainer>

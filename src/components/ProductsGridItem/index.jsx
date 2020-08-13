@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import CustomButton from '../CustomButton'
 
@@ -11,17 +12,19 @@ import {
 	ProductsGridItemValue,
 } from './styles'
 
-const ProductsGridItem = ({ name, image, category, value }) => (
+const ProductsGridItem = ({ name, image, category, value, id }) => (
 	<ProductsGridItemElement>
 		<ProductsGridItemFigure>
-			<ProductsGridItemImage src={image} />
+			<ProductsGridItemImage src={image}/>
 		</ProductsGridItemFigure>
 		<ProductsGridItemName>{name}</ProductsGridItemName>
 		<ProductsGridItemCategory>{category}</ProductsGridItemCategory>
 		<ProductsGridItemValue>R${value}</ProductsGridItemValue>
-		<CustomButton type="button" color="orange">
-			COMPRAR
-		</CustomButton>
+		<Link to={`/payment/${id}`}>
+			<CustomButton color="orange">
+				COMPRAR
+			</CustomButton>
+		</Link>
 	</ProductsGridItemElement>
 )
 
