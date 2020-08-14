@@ -15,11 +15,11 @@ import {
 const ProductsGridItem = ({ name, image, category, value, id }) => (
 	<ProductsGridItemElement>
 		<ProductsGridItemFigure>
-			<ProductsGridItemImage src={image}/>
+			<ProductsGridItemImage src={image} />
 		</ProductsGridItemFigure>
 		<ProductsGridItemName>{name}</ProductsGridItemName>
 		<ProductsGridItemCategory>{category}</ProductsGridItemCategory>
-		<ProductsGridItemValue>R${value}</ProductsGridItemValue>
+		<ProductsGridItemValue>R${Number(value).toFixed(2)}</ProductsGridItemValue>
 		<Link to={`/payment/${id}`}>
 			<CustomButton color="orange">
 				COMPRAR

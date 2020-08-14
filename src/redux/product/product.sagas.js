@@ -37,7 +37,7 @@ function* fetchProducts() {
 function* fetchProduct({ payload }) {
 	try {
 		const doc = yield firestore.collection('products').doc(payload).get()
-		const product = doc.data()
+		const product = { ...doc.data(), id: doc.id }
 		yield put(fetchProductSuccess(product))
 	} catch ({ message }) {
 		yield put(setAlert({

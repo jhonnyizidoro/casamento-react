@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectSingleProduct } from '../../redux/product/product.selectors'
 import { fetchProductStart } from '../../redux/product/product.actions'
+import { createOrderStart } from '../../redux/order/order.actions'
 import { hash } from '../../utils/pagarme'
 
 import CustomContainer from '../CustomContainer'
@@ -16,7 +17,7 @@ import InlineInputGroup from '../InlineInputGroup'
 import FormSelect from '../FormSelect'
 import CustomFormSubtitle from '../CustomFormSubtitle'
 
-const PaymentForm = ({ product, fetchProductStart, currentUser }) => {
+const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart }) => {
 	const [payment, setPayment] = useState({})
 	const [card, setCard] = useState({})
 	const { id } = useParams()
@@ -43,20 +44,14 @@ const PaymentForm = ({ product, fetchProductStart, currentUser }) => {
 
 	const handleSubmit = async event => {
 		event.preventDefault()
-
-		setPayment({
-			...payment,
-			cardHash: await hash(card),
-		})
-
-		console.log(payment)
-		console.log(currentUser)
+		const cardHash = await hash(card)
+		createOrderStart({ cardHash, payment, currentUser, product })
 	}
 
 	return product && (
 		<CustomContainer>
 			<CustomForm onSubmit={handleSubmit} title="Realizar pagamento">
-				<CustomFormSubtitle>Dados do cartão</CustomFormSubtitle>
+				<CustomFormSubtitle>Dados do pagamento</CustomFormSubtitle>
 				<FormSelect
 					name="installments"
 					onChange={handlePaymentChange}
@@ -103,11 +98,26 @@ const PaymentForm = ({ product, fetchProductStart, currentUser }) => {
 						mask="999"
 					/>
 				</InlineInputGroup>
-				<CustomFormSubtitle>Dados do endereço</CustomFormSubtitle>
 				<InlineInputGroup>
 					<FormInput
 						required
-						name="zipCode"
+						name="phone"
+						placeholder="Celular de contato"
+						mask="(99) 99999-9999"
+						onChange={handlePaymentChange}
+					/>
+					<FormInput
+						required
+						name="cpf"
+						placeholder="CPF"
+						mask="999.999.999-99"
+						onChange={handlePaymentChange}
+					/>
+				</InlineInputGroup>
+				<CustomFormSubtitle>Dados do endereço</CustomFormSubtitle>
+				<InlineInputGroup>
+					<FormInput
+						name="zipcode"
 						placeholder="CEP"
 						onChange={handlePaymentChange}
 						mask="99999-999"
@@ -137,12 +147,6 @@ const PaymentForm = ({ product, fetchProductStart, currentUser }) => {
 				</InlineInputGroup>
 				<FormInput
 					required
-					name="neighborhood"
-					placeholder="Bairro"
-					onChange={handlePaymentChange}
-				/>
-				<FormInput
-					required
 					name="street"
 					placeholder="Rua"
 					onChange={handlePaymentChange}
@@ -160,6 +164,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
 	fetchProductStart: id => dispatch(fetchProductStart(id)),
+	createOrderStart: order => dispatch(createOrderStart(order)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentForm)

@@ -5,6 +5,7 @@ export const Colors = {
 	PINK: '#C5A9A6',
 	MUTED: '#646464',
 	LIGHT: '#BCBCBC',
+	LIGHTER: '#F5F5F5',
 	FACEBOOK: '#3A559F',
 	GOOGLE: '#EA4335',
 }
