@@ -4,7 +4,7 @@ import CustomHeader from '../../components/CustomHeader'
 import AboutUs from '../../components/AboutUs'
 import GiftsList from '../../components/GiftsList'
 import PhotoGallery from '../../components/PhotoGallery'
-import ConfirmationForm from '../../components/ConfirmationForm'
+import SongRequestForm from '../../components/SongRequestForm'
 import AboutTheEvent from '../../components/AboutTheEvent'
 import EventCountdown from '../../components/EventCountdown'
 import CustomFooter from '../../components/CustomFooter'
@@ -15,7 +15,7 @@ const HomePage = () => (
 		<AboutUs />
 		<GiftsList />
 		<PhotoGallery />
-		<ConfirmationForm />
+		<SongRequestForm />
 		<AboutTheEvent />
 		<EventCountdown />
 		<CustomFooter />

@@ -25,6 +25,7 @@ const getStyles = ({ color, marginBottom = 0 }) => css`
 	border: 0;
 	margin-bottom: ${marginBottom}px;
 	padding: 10px 25px;
+	text-align: center;
 	transition: 350ms;
 	&:hover {
 		transform: skew(-10deg);

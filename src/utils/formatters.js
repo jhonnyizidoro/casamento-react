@@ -1,5 +1,5 @@
 export const formattedDate = timestamp => {
-	const date = new Date(timestamp)
+	const date = new Date(timestamp.toDate ? timestamp.toDate() : timestamp)
 	const [day, month, year, hour, min] = [
 		date.getDate(),
 		date.getMonth() + 1,

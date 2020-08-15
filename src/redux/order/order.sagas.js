@@ -28,7 +28,7 @@ function* fetchOrders({ payload }) {
 	} catch ({ message }) {
 		yield put(setAlert({
 			type: 'error',
-			title: 'ERRO AO CRIAR PEDIDO',
+			title: 'ERRO AO BUSCAR PEDIDOS',
 			message,
 		}))
 	}

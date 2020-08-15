@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost/api/'
+const ENDPOINT = 'http://localhost/'
 
 export const post = (route, body) => new Promise((resolve, reject) => {
 	fetch(`${ENDPOINT}${route}`, {

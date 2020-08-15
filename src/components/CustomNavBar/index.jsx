@@ -27,6 +27,7 @@ const CustomNavBar = ({ currentUser, logout }) => (
 					currentUser ?
 						<>
 							<NavBarItemAsLink exact activeClassName="active" to="/insert-product">INSERIR PRODUTO</NavBarItemAsLink>
+							<NavBarItemAsLink exact activeClassName="active" to="/song-requests">PEDIDOS DE MÚSICA</NavBarItemAsLink>
 							<NavBarItemAsLink exact activeClassName="active" to="/my-orders">MEUS PEDIDOS</NavBarItemAsLink>
 							<NavBarItemAsText onClick={logout}>SAIR</NavBarItemAsText>
 						</>

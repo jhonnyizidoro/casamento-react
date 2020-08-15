@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import CustomButton from '../CustomButton'
 
@@ -20,11 +19,7 @@ const ProductsGridItem = ({ name, image, category, value, id }) => (
 		<ProductsGridItemName>{name}</ProductsGridItemName>
 		<ProductsGridItemCategory>{category}</ProductsGridItemCategory>
 		<ProductsGridItemValue>R${Number(value).toFixed(2)}</ProductsGridItemValue>
-		<Link to={`/payment/${id}`}>
-			<CustomButton color="orange">
-				COMPRAR
-			</CustomButton>
-		</Link>
+		<CustomButton to={`/payment/${id}`} color="orange">COMPRAR</CustomButton>
 	</ProductsGridItemElement>
 )
 
