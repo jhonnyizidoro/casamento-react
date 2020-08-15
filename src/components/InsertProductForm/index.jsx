@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import { insertProductStart } from '../../redux/product/product.actions'
+import categories from '../../utils/categories.data'
 
 import CustomForm from '../../components/CustomForm'
 import FormInput from '../../components/FormInput'
 import CustomButton from '../../components/CustomButton'
 import FormSelect from '../../components/FormSelect'
 import ImageInput from '../ImageInput'
+import MoneyInput from '../MoneyInput'
 
 const InsertProductForm = ({ insertProductStart }) => {
 	const [product, setProduct] = useState({})
@@ -38,11 +40,10 @@ const InsertProductForm = ({ insertProductStart }) => {
 				onChange={handleChange}
 				required
 			/>
-			<FormInput
+			<MoneyInput
 				name="value"
 				placeholder="Valor"
 				onChange={handleChange}
-				type="number"
 				required
 			/>
 			<FormSelect
@@ -50,11 +51,7 @@ const InsertProductForm = ({ insertProductStart }) => {
 				placeholder="Selecione a categoria"
 				onChange={handleChange}
 				required
-				items={[
-					{ label: 'Cozinha', value: 'Cozinha' },
-					{ label: 'Quarto', value: 'Quarto' },
-					{ label: 'Churrasco', value: 'Churrasco' },
-				]}
+				items={categories}
 			/>
 			<CustomButton type="submit" color="orange">CADASTRAR PRODUTO</CustomButton>
 		</CustomForm>
