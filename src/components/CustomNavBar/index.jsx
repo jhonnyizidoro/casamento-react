@@ -4,9 +4,12 @@ import { createStructuredSelector } from 'reselect'
 
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { logout } from '../../redux/user/user.actions'
+import { selectNavBarState } from '../../redux/app/app.selectors'
+import { setNavBarState } from '../../redux/app/app.actions'
 
 import CustomContainer from '../CustomContainer'
 import LogoImage from '../../assets/images/logos/logo.png'
+import HamburgerMenu from '../HamburgerMenu'
 
 import {
 	NavBarContainer,
@@ -16,11 +19,11 @@ import {
 	NavBarItemAsText,
 } from './styles'
 
-const CustomNavBar = ({ currentUser, logout }) => (
+const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 	<CustomContainer>
 		<NavBarContainer>
 			<NavBarLogoImage src={LogoImage} />
-			<NavBarLinks>
+			<NavBarLinks isActive={navBarState} onClick={() => setNavBarState(!navBarState)}>
 				<NavBarItemAsLink exact activeClassName="active" to="/">INÍCIO</NavBarItemAsLink>
 				<NavBarItemAsLink exact activeClassName="active" to="/products">PRODUTOS</NavBarItemAsLink>
 				{
@@ -35,16 +38,19 @@ const CustomNavBar = ({ currentUser, logout }) => (
 						<NavBarItemAsLink exact activeClassName="active" to="/sign-in">LOGIN</NavBarItemAsLink>
 				}
 			</NavBarLinks>
+			<HamburgerMenu />
 		</NavBarContainer>
 	</CustomContainer>
 )
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
+	navBarState: selectNavBarState,
 })
 
 const mapDispatchToProps = dispatch => ({
 	logout: () => dispatch(logout()),
+	setNavBarState: state => dispatch(setNavBarState(state)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomNavBar)

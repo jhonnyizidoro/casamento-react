@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Fonts, Colors } from '../../assets/styles/variables'
+import { onMobile } from '../../assets/styles/media-queries'
 
 export const EventCountdownTitleWrapper = styled.div`
 	border-top: 1px solid ${Colors.LIGHT};
@@ -20,12 +21,18 @@ export const EventCountdownTitle = styled.div`
 export const EventCountdownWrapper = styled.div`
 	display: flex;
 	margin-bottom: 100px;
+	${onMobile`
+		flex-direction: column;
+	`}
 `
 
 export const EventCountdownBlock = styled.div`
 	flex-basis: 0;
 	flex-grow: 1;
 	text-align: center;
+	${onMobile`
+		margin-bottom: 35px;
+	`}
 `
 
 export const EventCountdownNumber = styled.div`

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { Colors, Fonts, Shadows } from '../../assets/styles/variables'
+import { onMobile } from '../../assets/styles/media-queries'
 
 export const CustomHeaderContainer = styled.header`
 	align-items: center;
@@ -8,6 +10,9 @@ export const CustomHeaderContainer = styled.header`
 	justify-content: center;
 	min-height: 500px;
 	position: relative;
+	${onMobile`
+		height: calc(100vh - 65px);
+	`}
 `
 
 export const CustomHeaderBackground = styled.video`
@@ -33,6 +38,9 @@ export const CustomHeaderTitle = styled.div`
 	line-height: 1.3;
 	text-shadow: ${Shadows.SMALL};
 	transform: rotateZ(-8deg);
+	${onMobile`
+		font-size: 3.5rem;
+	`}
 `
 
 export const CustomHeaderDate = styled.div`

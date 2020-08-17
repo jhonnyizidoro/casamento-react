@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Colors, Fonts } from '../../assets/styles/variables'
+import { onMobile } from '../../assets/styles/media-queries'
 
 export const CustomFormTitle = styled.div`
 	color: ${Colors.PURPLE};
@@ -15,4 +16,8 @@ export const CustomFormElement = styled.form`
 	flex-direction: column;
 	margin: 0 auto 40px;
 	max-width: 400px;
+	${onMobile`
+		margin: 0 15px 40px;
+		max-width: 600px;
+	`}
 `

@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 import { Fonts } from './variables'
+import { onMobile } from './media-queries'
 
 const GlobalStyles = createGlobalStyle`
 	* {
@@ -9,6 +10,9 @@ const GlobalStyles = createGlobalStyle`
 	
 	body {
 		font-family: ${Fonts.DEFAULT}, sans-serif;
+		${onMobile`
+			padding-top: 65px;
+		`}
 	}
 	
 	h1,

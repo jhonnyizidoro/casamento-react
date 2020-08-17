@@ -2,7 +2,13 @@ import React from 'react'
 
 import CustomContainer from '../CustomContainer'
 
-import { CustomTableTitle, CustomTableContainer, CustomTableRow, CustomTableColumn } from './styles'
+import {
+	CustomTableTitle,
+	CustomTableContainer,
+	CustomTableRow,
+	CustomTableColumn,
+	CustomTableMobileLabel,
+} from './styles'
 
 const CustomTable = ({ title, labels, items }) => (
 	<CustomContainer>
@@ -16,8 +22,11 @@ const CustomTable = ({ title, labels, items }) => (
 			{
 				items.map((itemArray, index) => <CustomTableRow key={index}>
 					{
-						itemArray.map((item, index) => <CustomTableColumn key={index}>{item}</CustomTableColumn>)
-					}
+						itemArray.map((item, index) => <CustomTableColumn key={index}>
+								<CustomTableMobileLabel>{labels[index]}: </CustomTableMobileLabel>
+								{item}
+							</CustomTableColumn>,
+						)}
 				</CustomTableRow>)
 			}
 		</CustomTableContainer>

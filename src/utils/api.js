@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost/'
+const ENDPOINT = 'https://api.casamentoleoejeny.com.br/'
 
 export const post = (route, body) => new Promise((resolve, reject) => {
 	fetch(`${ENDPOINT}${route}`, {

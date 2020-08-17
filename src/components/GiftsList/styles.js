@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Colors, Fonts, Shadows } from '../../assets/styles/variables'
+import { onMobile } from '../../assets/styles/media-queries'
 
 import GiftsListBackground from '../../assets/images/gifts/background.jpg'
 
@@ -15,6 +16,10 @@ export const GiftsListHeader = styled.div`
 	padding: 150px 0;
 	text-align: center;
 	text-shadow: ${Shadows.SMALL};
+	${onMobile`
+		font-size: 3rem;
+		padding: 70px 0;
+	`}
 `
 
 export const GiftsListSection = styled.section`

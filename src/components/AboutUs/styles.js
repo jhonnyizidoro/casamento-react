@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Colors, Fonts, Shadows } from '../../assets/styles/variables'
+import { onMobile } from '../../assets/styles/media-queries'
 
 export const AboutUsTitle = styled.h2`
 	color: ${Colors.PURPLE};
@@ -10,10 +11,16 @@ export const AboutUsTitle = styled.h2`
 	margin: 50px auto 20px;
 	max-width: 450px;
 	text-align: center;
+	${onMobile`
+		font-size: 2rem;
+	`}
 `
 
 export const AboutUsContainer = styled.div`
 	display: flex;
+	${onMobile`
+		flex-direction: column;
+	`}
 `
 
 export const AboutUsSection = styled.div`
@@ -24,10 +31,19 @@ export const AboutUsSection = styled.div`
 	&:nth-child(2) {
 		flex-direction: row-reverse;
 	}
+	${onMobile`
+		flex-direction: column;
+		&:nth-child(2) {
+			flex-direction: column;
+		}
+	`}
 `
 
 export const AboutUsContent = styled.div`
 	width: 50%;
+	${onMobile`
+		width: 100%;
+	`}
 `
 
 export const AboutUsSubtitle = styled.h3`
@@ -35,6 +51,10 @@ export const AboutUsSubtitle = styled.h3`
 	font-family: ${Fonts.LIGHT_CURSIVE};
 	font-size: 5rem;
 	font-weight: normal;
+	${onMobile`
+		font-size: 3rem;
+		text-align: center;
+	`}
 `
 
 export const AboutUsText = styled.p`
@@ -47,6 +67,10 @@ export const AboutUsImage = styled.img`
 	object-fit: cover;
 	padding: 5px;
 	width: 50%;
+	${onMobile`
+		padding: 0;
+		width: 100%;
+	`}
 `
 
 export const AboutUsContact = styled.div`
@@ -55,6 +79,10 @@ export const AboutUsContact = styled.div`
 	margin: 10px 5px;
 	padding: 15px 0;
 	width: 100%;
+	${onMobile`
+		flex-direction: column;
+		padding: 10px 0;
+	`}
 `
 
 export const AboutUsContactBlock = styled.div`
@@ -63,4 +91,7 @@ export const AboutUsContactBlock = styled.div`
 	flex-grow: 1;
 	font-size: .9rem;
 	justify-content: center;
+	${onMobile`
+		padding: 10px 0;
+	`}
 `
