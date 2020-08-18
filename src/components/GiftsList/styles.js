@@ -22,7 +22,7 @@ export const GiftsListHeader = styled.div`
 	`}
 `
 
-export const GiftsListSection = styled.section`
+export const GiftsListSection = styled.div`
 	color: ${Colors.DARK};
 	text-align: center;
 	padding: 80px 0;

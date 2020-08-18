@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { Colors, Fonts, Shadows } from '../../assets/styles/variables'
 import { onMobile } from '../../assets/styles/media-queries'
@@ -65,7 +66,7 @@ export const AboutUsText = styled.p`
 	text-align: justify;
 `
 
-export const AboutUsImage = styled.img`
+export const AboutUsImage = styled(LazyLoadImage)`
 	filter: drop-shadow(${Shadows.SMALL});
 	object-fit: cover;
 	padding: 5px;

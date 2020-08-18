@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg'
 import HeaderVideo from '../../assets/videos/header-background.mp4'
@@ -17,39 +17,50 @@ import {
 	CustomHeaderHearts,
 } from './styles'
 
-const CustomHeader = () => (
-	<CustomHeaderContainer>
-		<CustomHeaderBackgroundImage src={HeaderImage} alt="Jenyfer e Leonardo" />
-		<CustomHeaderBackground
-			src={HeaderVideo}
-			autoPlay
-			loop
-			muted
-			type="video/mp4"
-			controls={false}
-		/>
-		<CustomHeaderContent>
-			<CustomHeaderTitle>Jenyfer &<br />Leonardo</CustomHeaderTitle>
-			<CustomHeaderDate>
-				<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
-				01
-				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
-				01
-				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
-				2020
-				<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
-			</CustomHeaderDate>
-			<CustomHeaderSubtitle>NÓS VAMOS NOS CASAR</CustomHeaderSubtitle>
-			<CustomHeaderHearts>
-				<CustomIcon fill="purple">
-					<HeartIcon />
-				</CustomIcon>
-				<CustomIcon fill="white">
-					<HeartIcon />
-				</CustomIcon>
-			</CustomHeaderHearts>
-		</CustomHeaderContent>
-	</CustomHeaderContainer>
-)
+const CustomHeader = () => {
 
+	const videoRef = useRef(null)
+
+	useEffect(() => {
+		//videoRef.current.setAttribute('muted', true)
+	})
+
+	return (
+		<CustomHeaderContainer>
+			<CustomHeaderBackgroundImage src={HeaderImage} alt="Jenyfer e Leonardo" />
+			<CustomHeaderBackground
+				src={HeaderVideo}
+				autoPlay
+				loop
+				muted
+				type="video/mp4"
+				controls={false}
+				playsInline
+				ref={videoRef}
+			/>
+			<CustomHeaderContent>
+				<CustomHeaderTitle>Jenyfer &<br />Leonardo</CustomHeaderTitle>
+				<CustomHeaderDate>
+					<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
+					01
+					<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
+					01
+					<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
+					2020
+					<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
+				</CustomHeaderDate>
+				<CustomHeaderSubtitle>NÓS VAMOS NOS CASAR</CustomHeaderSubtitle>
+				<CustomHeaderHearts>
+					<CustomIcon fill="purple">
+						<HeartIcon />
+					</CustomIcon>
+					<CustomIcon fill="white">
+						<HeartIcon />
+					</CustomIcon>
+				</CustomHeaderHearts>
+			</CustomHeaderContent>
+		</CustomHeaderContainer>
+	)
+
+}
 export default CustomHeader
