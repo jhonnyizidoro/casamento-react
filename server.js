@@ -18,6 +18,4 @@ app.get('*', (req, res) => {
 	res.sendFile(join(__dirname, 'build', 'index.html'))
 })
 
-app.listen(process.env.PORT || 80, () => {
-	console.log('Server on')
-})
+app.listen(process.env.PORT || 80, () => console.log('Server on'))
