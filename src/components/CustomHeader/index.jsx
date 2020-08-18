@@ -2,11 +2,13 @@ import React from 'react'
 
 import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg'
 import HeaderVideo from '../../assets/videos/header-background.mp4'
+import HeaderImage from '../../assets/videos/header-background-image.jpg'
 import CustomIcon from '../CustomIcon'
 
 import {
 	CustomHeaderContainer,
 	CustomHeaderBackground,
+	CustomHeaderBackgroundImage,
 	CustomHeaderContent,
 	CustomHeaderTitle,
 	CustomHeaderDate,
@@ -17,7 +19,15 @@ import {
 
 const CustomHeader = () => (
 	<CustomHeaderContainer>
-		<CustomHeaderBackground src={HeaderVideo} autoPlay loop muted />
+		<CustomHeaderBackgroundImage src={HeaderImage} alt="Jenyfer e Leonardo" />
+		<CustomHeaderBackground
+			src={HeaderVideo}
+			autoPlay
+			loop
+			muted
+			type="video/mp4"
+			controls={false}
+		/>
 		<CustomHeaderContent>
 			<CustomHeaderTitle>Jenyfer &<br />Leonardo</CustomHeaderTitle>
 			<CustomHeaderDate>

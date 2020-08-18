@@ -7,6 +7,7 @@ import { fetchProductsStart } from '../../redux/product/product.actions'
 
 import CustomContainer from '../CustomContainer'
 import ProductsGridItem from '../ProductsGridItem'
+import AppLoader from '../AppLoader'
 
 import { ProductsGridContainer, ProductsGridTitle } from './styles'
 
@@ -15,16 +16,19 @@ const ProductsGrid = ({ products, fetchProductsStart }) => {
 		fetchProductsStart()
 	}, [fetchProductsStart])
 
-	return (
-		<CustomContainer>
-			<ProductsGridTitle>Produtos disponíveis</ProductsGridTitle>
-			<ProductsGridContainer>
-				{
-					products && products.map(product => <ProductsGridItem key={product.id} {...product} />)
-				}
-			</ProductsGridContainer>
-		</CustomContainer>
-	)
+	return products ?
+		(
+			<CustomContainer>
+				<ProductsGridTitle>Produtos disponíveis</ProductsGridTitle>
+				<ProductsGridContainer>
+					{
+						products && products.map(product => <ProductsGridItem key={product.id} {...product} />)
+					}
+				</ProductsGridContainer>
+			</CustomContainer>
+		)
+		:
+		<AppLoader />
 }
 
 const mapStateToProps = createStructuredSelector({

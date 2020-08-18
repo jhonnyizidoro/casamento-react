@@ -19,17 +19,17 @@ const CustomFooter = () => (
 			<CustomFooterText>Desenvolvido por</CustomFooterText>
 			<CustomFooterText>JHONNY IZIDORO MENARIM</CustomFooterText>
 			<CustomIcon marginRight={7} fill="white">
-				<CustomFooterLink href="https://www.facebook.com/jhonny.cfal/" target="_blank">
+				<CustomFooterLink href="https://www.facebook.com/jhonny.cfal/" target="_blank" rel="noopener">
 					<FacebookIcon />
 				</CustomFooterLink>
 			</CustomIcon>
 			<CustomIcon marginRight={7} fill="white">
-				<CustomFooterLink href="https://api.whatsapp.com/send?phone=5541991791053" target="_blank">
+				<CustomFooterLink href="https://api.whatsapp.com/send?phone=5541991791053" target="_blank" rel="noopener">
 					<WhatsAppIcon />
 				</CustomFooterLink>
 			</CustomIcon>
 			<CustomIcon marginRight={7} fill="white">
-				<CustomFooterLink href="https://www.instagram.com/jhonny.menarim/" target="_blank">
+				<CustomFooterLink href="https://www.instagram.com/jhonny.menarim/" target="_blank" rel="noopener">
 					<InstagramIcon />
 				</CustomFooterLink>
 			</CustomIcon>

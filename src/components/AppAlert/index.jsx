@@ -10,27 +10,28 @@ import CustomIcon from '../CustomIcon'
 import { ReactComponent as ErrorIcon } from '../../assets/icons/error.svg'
 import { ReactComponent as SuccessIcon } from '../../assets/icons/success.svg'
 
-import { AppAlertContainer, AppAlertContent, AppAlertTitle, AppAlertMessage } from './styles'
+import {
+	AppAlertContainer,
+	AppAlertContent,
+	AppAlertTitle,
+	AppAlertMessage,
+} from './styles'
 
 const AppAlert = ({ alert, clearAlert }) => {
 	const { type, title, message } = alert || {}
 	return alert && (
-		<>
-			{
-				<AppAlertContainer>
-					<AppAlertContent>
-						<CustomIcon size={100} fill="purple">
-							{
-								type === 'error' ? <ErrorIcon /> : <SuccessIcon />
-							}
-						</CustomIcon>
-						<AppAlertTitle>{title}</AppAlertTitle>
-						<AppAlertMessage>{message}</AppAlertMessage>
-						<CustomButton onClick={clearAlert} type="button">OK!</CustomButton>
-					</AppAlertContent>
-				</AppAlertContainer>
-			}
-		</>
+		<AppAlertContainer>
+			<AppAlertContent>
+				<CustomIcon size={100} fill="purple">
+					{
+						type === 'error' ? <ErrorIcon /> : <SuccessIcon />
+					}
+				</CustomIcon>
+				<AppAlertTitle>{title}</AppAlertTitle>
+				<AppAlertMessage>{message}</AppAlertMessage>
+				<CustomButton onClick={clearAlert} type="button">OK!</CustomButton>
+			</AppAlertContent>
+		</AppAlertContainer>
 	)
 }
 

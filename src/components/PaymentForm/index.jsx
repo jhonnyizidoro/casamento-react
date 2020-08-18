@@ -53,6 +53,7 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 			<CustomForm onSubmit={handleSubmit} title="Realizar pagamento">
 				<CustomFormSubtitle>Dados do pagamento</CustomFormSubtitle>
 				<FormSelect
+					aria-label="Selecione a forma de pagamento"
 					name="installments"
 					onChange={handlePaymentChange}
 					required

@@ -20,14 +20,18 @@ const CustomTable = ({ title, labels, items }) => (
 				}
 			</CustomTableRow>
 			{
-				items.map((itemArray, index) => <CustomTableRow key={index}>
-					{
-						itemArray.map((item, index) => <CustomTableColumn key={index}>
-								<CustomTableMobileLabel>{labels[index]}: </CustomTableMobileLabel>
-								{item}
-							</CustomTableColumn>,
-						)}
-				</CustomTableRow>)
+				items.map((itemArray, index) => (
+					<CustomTableRow key={index}>
+						{
+							itemArray.map((item, index) => (
+								<CustomTableColumn key={index}>
+									<CustomTableMobileLabel>{labels[index]}: </CustomTableMobileLabel>
+									{item}
+								</CustomTableColumn>
+							))
+						}
+					</CustomTableRow>
+				))
 			}
 		</CustomTableContainer>
 	</CustomContainer>

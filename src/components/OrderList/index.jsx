@@ -6,6 +6,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectOrders } from '../../redux/order/order.selectors'
 import { fetchOrdersStart } from '../../redux/order/order.actions'
 import { formattedDate } from '../../utils/formatters'
+import AppLoader from '../AppLoader'
 
 import CustomTable from '../CustomTable'
 
@@ -15,25 +16,30 @@ const OrderList = ({ currentUser: { uid }, orders, fetchOrdersStart }) => {
 		fetchOrdersStart(uid)
 	}, [uid, fetchOrdersStart])
 
-	return orders && <CustomTable
-		title="Meus pedidos"
-		labels={[
-			'ID',
-			'Item',
-			'Valor',
-			'Status',
-			'Criado em',
-			'Ultima atualização',
-		]}
-		items={orders.map(({ transaction, product, value, status, createdAt, updatedAt }) => [
-			transaction,
-			product,
-			`RS${value.toFixed(2)}`,
-			status,
-			formattedDate(createdAt),
-			formattedDate(updatedAt),
-		])}
-	/>
+	return orders ?
+		(
+			<CustomTable
+				title="Meus pedidos"
+				labels={[
+					'ID',
+					'Item',
+					'Valor',
+					'Status',
+					'Criado em',
+					'Ultima atualização',
+				]}
+				items={orders.map(({ transaction, product, value, status, createdAt, updatedAt }) => [
+					transaction,
+					product,
+					`RS${value.toFixed(2)}`,
+					status,
+					formattedDate(createdAt),
+					formattedDate(updatedAt),
+				])}
+			/>
+		)
+		:
+		<AppLoader />
 }
 
 const mapStateToProps = createStructuredSelector({

@@ -33,6 +33,7 @@ const InsertProductForm = ({ insertProductStart }) => {
 				name="image"
 				onChange={handleChange}
 				required
+				aria-label="Selecione a imagem"
 			/>
 			<FormInput
 				name="name"
@@ -47,6 +48,7 @@ const InsertProductForm = ({ insertProductStart }) => {
 				required
 			/>
 			<FormSelect
+				aria-label="Selecione a categoria"
 				name="category"
 				placeholder="Selecione a categoria"
 				onChange={handleChange}

@@ -4,7 +4,12 @@ import CustomContainer from '../CustomContainer'
 import CustomButton from '../CustomButton'
 import CustomDivider from '../CustomDivider'
 
-import { GiftsListHeader, GiftsListSection, GiftsListTitle, GiftsListText } from './styles'
+import {
+	GiftsListHeader,
+	GiftsListSection,
+	GiftsListTitle,
+	GiftsListText,
+} from './styles'
 
 const GiftsList = () => (
 	<>

@@ -22,7 +22,7 @@ import {
 const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 	<CustomContainer>
 		<NavBarContainer>
-			<NavBarLogoImage src={LogoImage} />
+			<NavBarLogoImage src={LogoImage} alt="Logo Jenyfer e Leonardo" />
 			<NavBarLinks isActive={navBarState} onClick={() => setNavBarState(!navBarState)}>
 				<NavBarItemAsLink exact activeClassName="active" to="/">INÍCIO</NavBarItemAsLink>
 				<NavBarItemAsLink exact activeClassName="active" to="/products">PRODUTOS</NavBarItemAsLink>

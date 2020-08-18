@@ -14,7 +14,7 @@ import {
 const ProductsGridItem = ({ name, image, category, value, id }) => (
 	<ProductsGridItemElement>
 		<ProductsGridItemFigure>
-			<ProductsGridItemImage src={image} />
+			<ProductsGridItemImage src={image} alt={`Imagem do produto ${name}`} />
 		</ProductsGridItemFigure>
 		<ProductsGridItemName>{name}</ProductsGridItemName>
 		<ProductsGridItemCategory>{category}</ProductsGridItemCategory>

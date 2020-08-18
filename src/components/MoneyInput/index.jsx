@@ -2,7 +2,7 @@ import React from 'react'
 
 import { MoneyInputElement } from './styles'
 
-const MoneyInput = ({ name, onChange, ...otherProps }) => {
+const MoneyInput = ({ name, placeholder, onChange, ...otherProps }) => {
 
 	const handleChange = event => {
 		const { target: { value } } = event
@@ -18,6 +18,8 @@ const MoneyInput = ({ name, onChange, ...otherProps }) => {
 		decimalSeparator=","
 		decimalScale={2}
 		fixedDecimalScale={true}
+		aria-label={placeholder}
+		placeholder={placeholder}
 	/>
 }
 

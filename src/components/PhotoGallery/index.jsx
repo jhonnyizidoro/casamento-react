@@ -14,7 +14,7 @@ const PhotoGallery = () => {
 		<CustomContainer>
 			<PhotoGalleryContainer maxHeight={maxHeight}>
 				{
-					images.map(src => <PhotoGalleryImage key={src} src={src} />)
+					images.map(src => <PhotoGalleryImage key={src} src={src} alt="Foto de Jenyfer e Leonardo" />)
 				}
 			</PhotoGalleryContainer>
 			<PhotoGalleryButtonContainer>

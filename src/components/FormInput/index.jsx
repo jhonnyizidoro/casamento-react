@@ -2,6 +2,12 @@ import React from 'react'
 
 import { FormInputElement } from './styles'
 
-const FormInput = props => <FormInputElement {...props} />
+const FormInput = ({ placeholder, ...otherProps }) => (
+	<FormInputElement
+		placeholder={placeholder}
+		aria-label={placeholder}
+		{...otherProps}
+	/>
+)
 
 export default FormInput

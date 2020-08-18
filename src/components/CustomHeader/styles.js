@@ -26,6 +26,17 @@ export const CustomHeaderBackground = styled.video`
 	z-index: -1;
 `
 
+export const CustomHeaderBackgroundImage = styled.img`
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 60%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: -2;
+`
+
 export const CustomHeaderContent = styled.h1`
 	color: #FFFFFF;
 	font-weight: normal;

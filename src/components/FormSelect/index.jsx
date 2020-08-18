@@ -8,13 +8,11 @@ const FormSelect = ({ items, placeholder, ...otherProps }) => (
 			placeholder && <FormSelectOption value="">{placeholder}</FormSelectOption>
 		}
 		{
-			items.map(item => <FormSelectOption
-					key={item.value}
-					value={item.value}
-				>
+			items.map(item => (
+				<FormSelectOption key={item.value} value={item.value}>
 					{item.label}
-				</FormSelectOption>,
-			)
+				</FormSelectOption>
+			))
 		}
 	</FormSelectElement>
 )
