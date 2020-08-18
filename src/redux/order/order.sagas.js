@@ -11,6 +11,7 @@ function* createOrder({ payload }) {
 			type: 'success',
 			title: 'PEDIDO CRIADO COM SUCESSO',
 			message: `Seu pedido número ${id} foi criado com sucesso.`,
+			buttonLink: '/my-orders',
 		}))
 	} catch ({ message }) {
 		yield put(setAlert({

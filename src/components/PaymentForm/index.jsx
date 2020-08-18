@@ -16,6 +16,7 @@ import CustomButton from '../CustomButton'
 import InlineInputGroup from '../InlineInputGroup'
 import FormSelect from '../FormSelect'
 import CustomFormSubtitle from '../CustomFormSubtitle'
+import AppLoader from '../AppLoader'
 
 const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart }) => {
 	const [payment, setPayment] = useState({})
@@ -44,118 +45,137 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 
 	const handleSubmit = async event => {
 		event.preventDefault()
-		const cardHash = await hash(card)
+		const cardHash = payment.method === 'boleto' ? null : await hash(card)
 		createOrderStart({ cardHash, payment, currentUser, product })
 	}
 
-	return product && (
-		<CustomContainer>
-			<CustomForm onSubmit={handleSubmit} title="Realizar pagamento">
-				<CustomFormSubtitle>Dados do pagamento</CustomFormSubtitle>
-				<FormSelect
-					aria-label="Selecione a forma de pagamento"
-					name="installments"
-					onChange={handlePaymentChange}
-					required
-					items={[
-						{ label: `1x de R$${product.value} sem juros`, value: 1 },
-						{ label: `2x de R$${(product.value / 2).toFixed(2)} sem juros`, value: 2 },
-						{ label: `3x de R$${(product.value / 3).toFixed(2)} sem juros`, value: 3 },
-						{ label: `4x de R$${(product.value / 4).toFixed(2)} sem juros`, value: 4 },
-						{ label: `5x de R$${(product.value / 5).toFixed(2)} sem juros`, value: 5 },
-						{ label: `6x de R$${(product.value / 6).toFixed(2)} sem juros`, value: 6 },
-					]}
-				/>
-				<FormInput
-					required
-					autoComplete="cc-number"
-					name="cardNumber"
-					placeholder="Número do cartão"
-					onChange={handleCardChange}
-					mask="9999 9999 9999 9999"
-				/>
-				<FormInput
-					required
-					autoComplete="cc-name"
-					name="holderName"
-					placeholder="Nome impresso no cartão"
-					onChange={handleCardChange}
-				/>
-				<InlineInputGroup>
-					<FormInput
+	return product ?
+		(
+			<CustomContainer>
+				<CustomForm onSubmit={handleSubmit} title="Realizar pagamento">
+					<CustomFormSubtitle>Dados do pagamento</CustomFormSubtitle>
+					<FormSelect
+						aria-label="Selecione a forma de pagamento"
+						name="method"
+						onChange={handlePaymentChange}
 						required
-						autoComplete="cc-exp"
-						name="expirationDate"
-						placeholder="Data de expiração"
-						onChange={handleCardChange}
-						mask="99/99"
+						items={[
+							{ label: 'Pagamento com Cartão de Crédito', value: 'card' },
+							{ label: 'Pagamento com Boleto', value: 'boleto' },
+						]}
 					/>
+					{
+						payment.method !== 'boleto' && (
+							<>
+								<FormSelect
+									aria-label="Selecione as parcelas"
+									name="installments"
+									onChange={handlePaymentChange}
+									required
+									items={[
+										{ label: `1x de R$${product.value} sem juros`, value: 1 },
+										{ label: `2x de R$${(product.value / 2).toFixed(2)} sem juros`, value: 2 },
+										{ label: `3x de R$${(product.value / 3).toFixed(2)} sem juros`, value: 3 },
+										{ label: `4x de R$${(product.value / 4).toFixed(2)} sem juros`, value: 4 },
+										{ label: `5x de R$${(product.value / 5).toFixed(2)} sem juros`, value: 5 },
+										{ label: `6x de R$${(product.value / 6).toFixed(2)} sem juros`, value: 6 },
+									]}
+								/>
+								<FormInput
+									required
+									autoComplete="cc-number"
+									name="cardNumber"
+									placeholder="Número do cartão"
+									onChange={handleCardChange}
+									mask="9999 9999 9999 9999"
+								/>
+								<FormInput
+									required
+									autoComplete="cc-name"
+									name="holderName"
+									placeholder="Nome impresso no cartão"
+									onChange={handleCardChange}
+								/>
+								<InlineInputGroup>
+									<FormInput
+										required
+										autoComplete="cc-exp"
+										name="expirationDate"
+										placeholder="Data de expiração"
+										onChange={handleCardChange}
+										mask="99/99"
+									/>
+									<FormInput
+										required
+										autoComplete="cc-csc"
+										name="cardCvv"
+										placeholder="Código de segurança"
+										onChange={handleCardChange}
+										mask="999"
+									/>
+								</InlineInputGroup>
+							</>
+						)
+					}
+					<CustomFormSubtitle>Dados pessoais</CustomFormSubtitle>
+					<InlineInputGroup>
+						<FormInput
+							required
+							name="phone"
+							placeholder="Celular de contato"
+							mask="(99) 99999-9999"
+							onChange={handlePaymentChange}
+						/>
+						<FormInput
+							required
+							name="cpf"
+							placeholder="CPF"
+							mask="999.999.999-99"
+							onChange={handlePaymentChange}
+						/>
+					</InlineInputGroup>
+					<InlineInputGroup>
+						<FormInput
+							name="zipcode"
+							placeholder="CEP"
+							onChange={handlePaymentChange}
+							mask="99999-999"
+							autoComplete="postal-code"
+						/>
+						<FormInput
+							required
+							name="state"
+							placeholder="Estado"
+							onChange={handlePaymentChange}
+							mask="aa"
+						/>
+					</InlineInputGroup>
+					<InlineInputGroup>
+						<FormInput
+							required
+							name="city"
+							placeholder="Cidade"
+							onChange={handlePaymentChange}
+						/>
+						<FormInput
+							required
+							name="number"
+							placeholder="Número"
+							onChange={handlePaymentChange}
+						/>
+					</InlineInputGroup>
 					<FormInput
 						required
-						autoComplete="cc-csc"
-						name="cardCvv"
-						placeholder="Código de segurança"
-						onChange={handleCardChange}
-						mask="999"
-					/>
-				</InlineInputGroup>
-				<InlineInputGroup>
-					<FormInput
-						required
-						name="phone"
-						placeholder="Celular de contato"
-						mask="(99) 99999-9999"
+						name="street"
+						placeholder="Rua"
 						onChange={handlePaymentChange}
 					/>
-					<FormInput
-						required
-						name="cpf"
-						placeholder="CPF"
-						mask="999.999.999-99"
-						onChange={handlePaymentChange}
-					/>
-				</InlineInputGroup>
-				<CustomFormSubtitle>Dados do endereço</CustomFormSubtitle>
-				<InlineInputGroup>
-					<FormInput
-						name="zipcode"
-						placeholder="CEP"
-						onChange={handlePaymentChange}
-						mask="99999-999"
-						autoComplete="postal-code"
-					/>
-					<FormInput
-						required
-						name="state"
-						placeholder="Estado"
-						onChange={handlePaymentChange}
-						mask="aa"
-					/>
-				</InlineInputGroup>
-				<InlineInputGroup>
-					<FormInput
-						required
-						name="city"
-						placeholder="Cidade"
-						onChange={handlePaymentChange}
-					/>
-					<FormInput
-						required
-						name="number"
-						placeholder="Número"
-						onChange={handlePaymentChange}
-					/>
-				</InlineInputGroup>
-				<FormInput
-					required
-					name="street"
-					placeholder="Rua"
-					onChange={handlePaymentChange}
-				/>
-				<CustomButton type="submit" color="orange">REALIZAR PAGAMENTO</CustomButton>
-			</CustomForm>
-		</CustomContainer>
-	)
+					<CustomButton type="submit" color="orange">REALIZAR PAGAMENTO</CustomButton>
+				</CustomForm>
+			</CustomContainer>
+		)
+		:
+		<AppLoader />
 }
 
 const mapStateToProps = createStructuredSelector({

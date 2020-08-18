@@ -18,7 +18,7 @@ import {
 } from './styles'
 
 const AppAlert = ({ alert, clearAlert }) => {
-	const { type, title, message } = alert || {}
+	const { type, title, message, buttonLink } = alert || {}
 	return alert && (
 		<AppAlertContainer>
 			<AppAlertContent>
@@ -29,7 +29,12 @@ const AppAlert = ({ alert, clearAlert }) => {
 				</CustomIcon>
 				<AppAlertTitle>{title}</AppAlertTitle>
 				<AppAlertMessage>{message}</AppAlertMessage>
-				<CustomButton onClick={clearAlert} type="button">OK!</CustomButton>
+				<CustomButton
+					onClick={clearAlert}
+					to={buttonLink}
+					type="button">
+					OK!
+				</CustomButton>
 			</AppAlertContent>
 		</AppAlertContainer>
 	)
