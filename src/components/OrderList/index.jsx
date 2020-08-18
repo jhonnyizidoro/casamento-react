@@ -6,8 +6,9 @@ import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectOrders } from '../../redux/order/order.selectors'
 import { fetchOrdersStart } from '../../redux/order/order.actions'
 import { formattedDate } from '../../utils/formatters'
-import AppLoader from '../AppLoader'
+import { getStatus } from '../../utils/pagarme'
 
+import AppLoader from '../AppLoader'
 import CustomTable from '../CustomTable'
 
 const OrderList = ({ currentUser: { uid }, orders, fetchOrdersStart }) => {
@@ -19,20 +20,20 @@ const OrderList = ({ currentUser: { uid }, orders, fetchOrdersStart }) => {
 	return orders ?
 		(
 			<CustomTable
-				title="Meus pedidos"
-				labels={[
+				title={orders.length ? 'Meus pedidos' : 'Você ainda não realizou nenhum pedido'}
+				labels={orders.length ? [
 					'ID',
 					'Item',
 					'Valor',
 					'Status',
 					'Criado em',
 					'Ultima atualização',
-				]}
+				] : []}
 				items={orders.map(({ transaction, product, value, status, createdAt, updatedAt }) => [
 					transaction,
 					product,
 					`RS${value.toFixed(2)}`,
-					status,
+					getStatus(status),
 					formattedDate(createdAt),
 					formattedDate(updatedAt),
 				])}
