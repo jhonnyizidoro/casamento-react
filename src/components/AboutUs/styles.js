@@ -19,7 +19,7 @@ export const AboutUsTitle = styled.h2`
 export const AboutUsContainer = styled.div`
 	display: flex;
 	${onMobile`
-		flex-direction: column;
+		display: block;
 	`}
 `
 
@@ -33,6 +33,9 @@ export const AboutUsSection = styled.div`
 	}
 	${onMobile`
 		flex-direction: column;
+		&:nth-child(1) {
+			margin-bottom: 30px;
+		}
 		&:nth-child(2) {
 			flex-direction: column;
 		}
@@ -81,6 +84,7 @@ export const AboutUsContact = styled.div`
 	width: 100%;
 	${onMobile`
 		flex-direction: column;
+		margin: 10px 0;
 		padding: 10px 0;
 	`}
 `
