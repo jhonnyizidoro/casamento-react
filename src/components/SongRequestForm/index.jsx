@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { selectCurrentUser } from '../../redux/user/user.selectors'
+import { selectSubmitting } from '../../redux/app/app.selectors'
 import { insertSongRequestStart } from '../../redux/user/user.actions'
 
 import CustomForm from '../CustomForm'
@@ -11,7 +12,7 @@ import CustomButton from '../CustomButton'
 import CustomDivider from '../CustomDivider'
 import CustomContainer from '../CustomContainer'
 
-const SongRequestForm = ({ currentUser, insertSongRequestStart }) => {
+const SongRequestForm = ({ currentUser, insertSongRequestStart, submitting }) => {
 	const [song, setSong] = useState(null)
 
 	const handleChange = ({ target: { value } }) => setSong(value)
@@ -41,7 +42,13 @@ const SongRequestForm = ({ currentUser, insertSongRequestStart }) => {
 				/>
 				{
 					currentUser ?
-						<CustomButton type="submit" color="orange">CONFIRMAR PEDIDO</CustomButton>
+						<CustomButton
+							type="submit"
+							color="orange"
+							isLoading={submitting}
+						>
+							CONFIRMAR PEDIDO
+						</CustomButton>
 						:
 						<CustomButton to="/sign-in" color="orange">FAÇA O LOGIN PARA PEDIR MÚSICA</CustomButton>
 				}
@@ -53,6 +60,7 @@ const SongRequestForm = ({ currentUser, insertSongRequestStart }) => {
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
+	submitting: selectSubmitting,
 })
 
 const mapDispatchToProps = dispatch => ({

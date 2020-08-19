@@ -1,7 +1,7 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects'
 import UserActionTypes from './user.types'
 import { signInSuccess, fetchSongRequestsSuccess } from './user.actions'
-import { setAlert } from '../app/app.actions'
+import { setAlert, setSubmitting } from '../app/app.actions'
 import { auth, googleProvider, facebookProvider, firestore } from '../../utils/firebase'
 
 function* signInWithFacebook() {
@@ -32,6 +32,7 @@ function* signInWithGoogle() {
 
 function* insertSongRequest({ payload }) {
 	try {
+		yield put(setSubmitting(true))
 		const { uid } = payload
 		const oldSongRequest = yield firestore.collection('songRequests').where('uid', '==', uid).get()
 
@@ -48,6 +49,7 @@ function* insertSongRequest({ payload }) {
 				message: 'Cada convidado pode realizar apenas um pedido de música.',
 			}))
 		}
+		yield put(setSubmitting(false))
 	} catch ({ message }) {
 		yield put(setAlert({
 			type: 'error',

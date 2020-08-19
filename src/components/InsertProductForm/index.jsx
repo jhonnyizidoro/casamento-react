@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import { insertProductStart } from '../../redux/product/product.actions'
-import categories from '../../utils/categories.data'
+import categories from '../../utils/categories'
 
 import CustomForm from '../../components/CustomForm'
 import FormInput from '../../components/FormInput'

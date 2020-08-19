@@ -4,7 +4,7 @@ export const getFromIBGE = route => new Promise((resolve, reject) => {
 	fetch(`${ENDPOINT}${route}`)
 	.then(res => res.json())
 	.then(resultArray => {
-		const ordered = resultArray.sort((a, b) => (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? -1 : 0))
+		const ordered = resultArray.sort((a, b) => a.nome.localeCompare(b.nome))
 		resolve(removeDuplicateEntries(ordered))
 	})
 	.catch(error => reject(error))

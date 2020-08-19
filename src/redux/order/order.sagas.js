@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects'
 import OrderActionTypes from './order.types'
-import { setAlert } from '../app/app.actions'
+import { setAlert, setSubmitting } from '../app/app.actions'
 import { post, get } from '../../utils/api'
 import { getFromIBGE } from '../../utils/ibge'
 import { fetchOrdersSuccess, fetchStatesSuccess, fetchCitiesSuccess } from './order.actions'
@@ -14,6 +14,7 @@ function* createOrder({ payload }) {
 			message: `Seu pedido número ${id} foi criado com sucesso.`,
 			buttonLink: '/my-orders',
 		}))
+		yield put(setSubmitting(false))
 	} catch (error) {
 		yield put(setAlert({
 			type: 'error',

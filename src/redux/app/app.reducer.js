@@ -3,6 +3,7 @@ import AppActionTypes from './app.types'
 const INITIAL_STATE = {
 	alert: null,
 	navBarState: false,
+	submitting: false,
 }
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const appReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				navBarState: action.payload,
+			}
+		case AppActionTypes.SET_SUBMITTING:
+			return {
+				...state,
+				submitting: action.payload,
 			}
 		default:
 			return state

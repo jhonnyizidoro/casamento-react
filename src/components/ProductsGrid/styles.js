@@ -13,14 +13,29 @@ export const ProductsGridContainer = styled.div`
 	`}
 `
 
+export const ProductsGridHeader = styled.header`
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+	>:nth-child(2) {
+		width: 450px;
+	}
+	${onMobile`
+		flex-direction: column;
+		>:nth-child(2) {
+			width: 100%;
+		}
+	`}
+`
+
 export const ProductsGridTitle = styled.h1`
 	color: ${Colors.PURPLE};
 	font-family: ${Fonts.LIGHT_CURSIVE};
 	font-size: 4rem;
 	font-weight: normal;
-	margin-top: 40px;
-	text-align: center;
 	${onMobile`
 		font-size: 3rem;
+		text-align: center;
 	`}
 `

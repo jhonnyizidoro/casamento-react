@@ -6,9 +6,11 @@ import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectSingleProduct } from '../../redux/product/product.selectors'
 import { selectStates, selectCities } from '../../redux/order/order.selectors'
+import { selectSubmitting } from '../../redux/app/app.selectors'
 import { fetchProductStart } from '../../redux/product/product.actions'
 import { fetchStatesStart, fetchCitiesStart } from '../../redux/order/order.actions'
 import { createOrderStart } from '../../redux/order/order.actions'
+import { setSubmitting } from '../../redux/app/app.actions'
 import { hash } from '../../utils/pagarme'
 
 import CustomContainer from '../CustomContainer'
@@ -20,7 +22,7 @@ import FormSelect from '../FormSelect'
 import CustomFormSubtitle from '../CustomFormSubtitle'
 import AppLoader from '../AppLoader'
 
-const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart, states, cities, fetchStatesStart, fetchCitiesStart }) => {
+const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart, states, cities, fetchStatesStart, fetchCitiesStart, submitting, setSubmitting }) => {
 	const [payment, setPayment] = useState({})
 	const [card, setCard] = useState({})
 	const { id } = useParams()
@@ -54,6 +56,7 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 
 	const handleSubmit = async event => {
 		event.preventDefault()
+		setSubmitting(true)
 		const cardHash = payment.method === 'boleto' ? null : await hash(card)
 		createOrderStart({ cardHash, payment, currentUser, product })
 	}
@@ -183,7 +186,13 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 						placeholder="Rua"
 						onChange={handlePaymentChange}
 					/>
-					<CustomButton type="submit" color="orange">REALIZAR PAGAMENTO</CustomButton>
+					<CustomButton
+						type="submit"
+						color="orange"
+						isLoading={submitting}
+					>
+						REALIZAR PAGAMENTO
+					</CustomButton>
 				</CustomForm>
 			</CustomContainer>
 		)
@@ -196,6 +205,7 @@ const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 	states: selectStates,
 	cities: selectCities,
+	submitting: selectSubmitting,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -203,6 +213,7 @@ const mapDispatchToProps = dispatch => ({
 	createOrderStart: order => dispatch(createOrderStart(order)),
 	fetchStatesStart: () => dispatch(fetchStatesStart()),
 	fetchCitiesStart: state => dispatch(fetchCitiesStart(state)),
+	setSubmitting: submitting => dispatch(setSubmitting(submitting)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentForm)

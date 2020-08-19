@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Colors, Shadows } from '../../assets/styles/variables'
 
+import Loader from '../../assets/images/app/white-loader.svg'
+
 const getBackgroundColor = background => {
 	switch (background) {
 		case 'orange':
@@ -16,7 +18,27 @@ const getBackgroundColor = background => {
 	}
 }
 
-const getStyles = ({ color, marginBottom = 0 }) => css`
+const getLoaderStyles = isLoading => {
+	if (isLoading) {
+		return css`
+			position: relative;
+			&::after {
+				background: ${Colors.ORANGE} url("${Loader}") no-repeat center;
+				content: '';
+				display: block;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 100%;
+			}
+		`
+	} else {
+		return null
+	}
+}
+
+const getStyles = ({ color, isLoading, marginBottom = 0 }) => css`
 	background: ${getBackgroundColor(color)};
 	box-shadow: ${Shadows.SMALL};
 	color: #FFFFFF;
@@ -30,6 +52,7 @@ const getStyles = ({ color, marginBottom = 0 }) => css`
 	&:hover {
 		transform: skew(-10deg);
 	}
+	${getLoaderStyles(isLoading)}
 `
 
 export const CustomButtonElement = styled.button`${getStyles}`
