@@ -18,12 +18,6 @@ const SongRequestList = ({ songRequests, fetchSongRequestsStart }) => {
 	return songRequests ?
 		(
 			<CustomTable
-				onClick={console.log(songRequests.map(({ song, displayName, email, createdAt }) => [
-					song,
-					displayName,
-					email,
-					createdAt,
-				]))}
 				title="Pedidos de música"
 				labels={[
 					'Música',
