@@ -2,6 +2,8 @@ import OrderActionTypes from './order.types'
 
 const INITIAL_STATE = {
 	orders: null,
+	states: null,
+	cities: null,
 }
 
 const orderReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +12,16 @@ const orderReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				orders: action.payload,
+			}
+		case OrderActionTypes.FETCH_STATES_SUCCESS:
+			return {
+				...state,
+				states: action.payload,
+			}
+		case OrderActionTypes.FETCH_CITIES_SUCCESS:
+			return {
+				...state,
+				cities: action.payload,
 			}
 		default:
 			return state

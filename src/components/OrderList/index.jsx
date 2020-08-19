@@ -10,12 +10,23 @@ import { getStatus } from '../../utils/pagarme'
 
 import AppLoader from '../AppLoader'
 import CustomTable from '../CustomTable'
+import BoletoButton from '../BoletoButton'
 
 const OrderList = ({ currentUser: { uid }, orders, fetchOrdersStart }) => {
 
 	useEffect(() => {
 		fetchOrdersStart(uid)
 	}, [uid, fetchOrdersStart])
+
+	const getBoletoPayment = (url, status) => {
+		if (url && status === 'waiting_payment') {
+			return <BoletoButton url={url} />
+		} else if (!url) {
+			return 'Aguardando link'
+		} else {
+			return 'boleto bancário'
+		}
+	}
 
 	return orders ?
 		(
@@ -24,18 +35,16 @@ const OrderList = ({ currentUser: { uid }, orders, fetchOrdersStart }) => {
 				labels={orders.length ? [
 					'ID',
 					'Item',
-					'Valor',
 					'Status',
-					'Criado em',
 					'Ultima atualização',
+					'Pagamento',
 				] : []}
-				items={orders.map(({ transaction, product, value, status, createdAt, updatedAt }) => [
+				items={orders.map(({ transaction, product, value, status, updatedAt, paymentMethod, url }) => [
 					transaction,
-					product,
-					`RS${value.toFixed(2)}`,
+					`${product} - R$${value.toFixed(2)}`,
 					getStatus(status),
-					formattedDate(createdAt),
 					formattedDate(updatedAt),
+					paymentMethod === 'boleto' ? getBoletoPayment(url, status) : 'Cartão de crédito',
 				])}
 			/>
 		)

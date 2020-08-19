@@ -1,13 +1,18 @@
 import styled from 'styled-components'
+import { onMobile } from '../../assets/styles/media-queries'
 
 export const InlineInputGroupWrapper = styled.div`
 	display: flex;
+	justify-content: space-between;
 	input,
 	select {
-		flex-grow: 1;
+		width: 49%;
 	}
-	input:not(:last-child),
-	select:not(:last-child) {
-		margin-right: 10px;
-	}
+	${onMobile`
+		flex-direction: column;
+		input,
+		select {
+			width: 100%;
+		}
+	`}
 `

@@ -36,19 +36,19 @@ const EventCountdown = () => {
 			</EventCountdownTitleWrapper>
 			<EventCountdownWrapper>
 				<EventCountdownBlock>
-					<EventCountdownNumber>{chronometer.days}</EventCountdownNumber>
+					<EventCountdownNumber>{chronometer.days >= 0 ? chronometer.days : 0}</EventCountdownNumber>
 					<EventCountdownText>DIAS</EventCountdownText>
 				</EventCountdownBlock>
 				<EventCountdownBlock>
-					<EventCountdownNumber>{chronometer.hours}</EventCountdownNumber>
+					<EventCountdownNumber>{chronometer.hours >= 0 ? chronometer.hours : 0}</EventCountdownNumber>
 					<EventCountdownText>HORAS</EventCountdownText>
 				</EventCountdownBlock>
 				<EventCountdownBlock>
-					<EventCountdownNumber>{chronometer.minutes}</EventCountdownNumber>
+					<EventCountdownNumber>{chronometer.minutes >= 0 ? chronometer.minutes : 0}</EventCountdownNumber>
 					<EventCountdownText>MINUTOS</EventCountdownText>
 				</EventCountdownBlock>
 				<EventCountdownBlock>
-					<EventCountdownNumber>{chronometer.seconds}</EventCountdownNumber>
+					<EventCountdownNumber>{chronometer.seconds >= 0 ? chronometer.seconds : 0}</EventCountdownNumber>
 					<EventCountdownText>SEGUNDOS</EventCountdownText>
 				</EventCountdownBlock>
 			</EventCountdownWrapper>

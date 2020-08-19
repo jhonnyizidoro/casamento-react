@@ -17,6 +17,7 @@ export const CustomTableTitle = styled.h1`
 
 export const CustomTableContainer = styled.div`
 	box-shadow: ${Shadows.SMALL};
+	margin-bottom: 40px;
 `
 
 export const CustomTableRow = styled.div`
@@ -28,6 +29,7 @@ export const CustomTableRow = styled.div`
 		background: ${Colors.LIGHTER};
 	}
 	${onMobile`
+		border-bottom: 1px solid ${Colors.MUTED};
 		flex-direction: column;
 		&:nth-child(1) {
 			display: none;

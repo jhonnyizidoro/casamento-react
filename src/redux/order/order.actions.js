@@ -14,3 +14,22 @@ export const fetchOrdersSuccess = orders => ({
 	type: OrderActionTypes.FETCH_ORDERS_SUCCESS,
 	payload: orders,
 })
+
+export const fetchStatesStart = () => ({
+	type: OrderActionTypes.FETCH_STATES_START,
+})
+
+export const fetchStatesSuccess = states => ({
+	type: OrderActionTypes.FETCH_STATES_SUCCESS,
+	payload: states,
+})
+
+export const fetchCitiesStart = state => ({
+	type: OrderActionTypes.FETCH_CITIES_START,
+	payload: state,
+})
+
+export const fetchCitiesSuccess = cities => ({
+	type: OrderActionTypes.FETCH_CITIES_SUCCESS,
+	payload: cities,
+})

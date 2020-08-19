@@ -5,7 +5,9 @@ import { createStructuredSelector } from 'reselect'
 
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectSingleProduct } from '../../redux/product/product.selectors'
+import { selectStates, selectCities } from '../../redux/order/order.selectors'
 import { fetchProductStart } from '../../redux/product/product.actions'
+import { fetchStatesStart, fetchCitiesStart } from '../../redux/order/order.actions'
 import { createOrderStart } from '../../redux/order/order.actions'
 import { hash } from '../../utils/pagarme'
 
@@ -18,14 +20,15 @@ import FormSelect from '../FormSelect'
 import CustomFormSubtitle from '../CustomFormSubtitle'
 import AppLoader from '../AppLoader'
 
-const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart }) => {
+const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart, states, cities, fetchStatesStart, fetchCitiesStart }) => {
 	const [payment, setPayment] = useState({})
 	const [card, setCard] = useState({})
 	const { id } = useParams()
 
 	useEffect(() => {
 		fetchProductStart(id)
-	}, [id, fetchProductStart])
+		fetchStatesStart()
+	}, [id, fetchProductStart, fetchStatesStart])
 
 	const handlePaymentChange = ({ target }) => {
 		const { name, value } = target
@@ -43,13 +46,19 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 		})
 	}
 
+	const handleStateChange = event => {
+		handlePaymentChange(event)
+		const { target: { value } } = event
+		fetchCitiesStart(value)
+	}
+
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const cardHash = payment.method === 'boleto' ? null : await hash(card)
 		createOrderStart({ cardHash, payment, currentUser, product })
 	}
 
-	return product ?
+	return product && states ?
 		(
 			<CustomContainer>
 				<CustomForm onSubmit={handleSubmit} title="Realizar pagamento">
@@ -141,21 +150,25 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 							onChange={handlePaymentChange}
 							mask="99999-999"
 							autoComplete="postal-code"
-						/>
-						<FormInput
 							required
-							name="state"
+						/>
+						<FormSelect
+							aria-label="Selecione seu estado"
 							placeholder="Estado"
-							onChange={handlePaymentChange}
-							mask="aa"
+							name="state"
+							onChange={handleStateChange}
+							required
+							items={states.map(({ sigla, nome }) => ({ label: nome, value: sigla }))}
 						/>
 					</InlineInputGroup>
 					<InlineInputGroup>
-						<FormInput
-							required
-							name="city"
+						<FormSelect
+							aria-label="Selecione sua cidade"
 							placeholder="Cidade"
+							name="city"
 							onChange={handlePaymentChange}
+							required
+							items={cities ? cities.map(({ nome }) => ({ label: nome, value: nome })) : []}
 						/>
 						<FormInput
 							required
@@ -181,11 +194,15 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 const mapStateToProps = createStructuredSelector({
 	product: selectSingleProduct,
 	currentUser: selectCurrentUser,
+	states: selectStates,
+	cities: selectCities,
 })
 
 const mapDispatchToProps = dispatch => ({
 	fetchProductStart: id => dispatch(fetchProductStart(id)),
 	createOrderStart: order => dispatch(createOrderStart(order)),
+	fetchStatesStart: () => dispatch(fetchStatesStart()),
+	fetchCitiesStart: state => dispatch(fetchCitiesStart(state)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentForm)
