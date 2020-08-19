@@ -1,4 +1,4 @@
-const expressStaticGzip = require('express-static-gzip')
+const compression = require('compression')
 const express = require('express')
 const { join } = require('path')
 const app = express()
@@ -11,7 +11,7 @@ app.use((req, res, next) => {
 	}
 })
 
-app.use(expressStaticGzip(join(__dirname, 'build'), {}))
+app.use(compression())
 app.use(express.static(join(__dirname, 'build')))
 
 app.get('*', (req, res) => res.sendFile(join(__dirname, 'build', 'index.html')))
