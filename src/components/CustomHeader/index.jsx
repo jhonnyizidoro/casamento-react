@@ -33,11 +33,11 @@ const CustomHeader = () => (
 			<CustomHeaderTitle>Jenyfer &<br />Leonardo</CustomHeaderTitle>
 			<CustomHeaderDate>
 				<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
-				01
+				21
 				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
-				01
+				02
 				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
-				2020
+				2021
 				<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
 			</CustomHeaderDate>
 			<CustomHeaderSubtitle>NÓS VAMOS NOS CASAR</CustomHeaderSubtitle>

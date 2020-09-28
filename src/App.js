@@ -9,6 +9,7 @@ import SignInPage from './pages/SignIn'
 import InsertProductPage from './pages/InsertProduct'
 import ProductsPage from './pages/Products'
 import PaymentPage from './pages/Payment'
+import MyOrdersPage from './pages/MyOrders'
 import OrdersPage from './pages/Orders'
 import SongRequestsPage from './pages/SongRequests'
 
@@ -22,7 +23,8 @@ const App = () => (
 			<ProtectedRoute exact path="/insert-product" component={InsertProductPage} />
 			<Route exact path="/products" component={ProductsPage} />
 			<ProtectedRoute exact path="/payment/:id" component={PaymentPage} />
-			<ProtectedRoute exact path="/my-orders" component={OrdersPage} />
+			<ProtectedRoute exact path="/my-orders" component={MyOrdersPage} />
+			<ProtectedRoute exact path="/orders" component={OrdersPage} />
 			<ProtectedRoute exact path="/song-requests" component={SongRequestsPage} />
 		</Switch>
 	</>

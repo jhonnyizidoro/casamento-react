@@ -34,6 +34,7 @@ const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 								<>
 									<NavBarItemAsLink exact activeClassName="active" to="/insert-product">INSERIR PRODUTO</NavBarItemAsLink>
 									<NavBarItemAsLink exact activeClassName="active" to="/song-requests">PEDIDOS DE MÚSICA</NavBarItemAsLink>
+									<NavBarItemAsLink exact activeClassName="active" to="/orders">TODOS OS PEDIDOS</NavBarItemAsLink>
 								</>
 							}
 							<NavBarItemAsLink exact activeClassName="active" to="/my-orders">MEUS PEDIDOS</NavBarItemAsLink>

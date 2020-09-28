@@ -3,7 +3,7 @@ import OrderActionTypes from './order.types'
 import { setAlert, setSubmitting } from '../app/app.actions'
 import { post, get } from '../../utils/api'
 import { getFromIBGE } from '../../utils/ibge'
-import { fetchOrdersSuccess, fetchStatesSuccess, fetchCitiesSuccess } from './order.actions'
+import { fetchOrdersSuccess, fetchStatesSuccess, fetchCitiesSuccess, fetchUserOrdersSuccess } from './order.actions'
 
 function* createOrder({ payload }) {
 	try {
@@ -14,20 +14,34 @@ function* createOrder({ payload }) {
 			message: `Seu pedido número ${id} foi criado com sucesso.`,
 			buttonLink: '/my-orders',
 		}))
-		yield put(setSubmitting(false))
 	} catch (error) {
+		const { message } = error
 		yield put(setAlert({
 			type: 'error',
 			title: 'ERRO AO CRIAR PEDIDO',
+			message: message || JSON.stringify(error),
+		}))
+	}
+	yield put(setSubmitting(false))
+}
+
+function* fetchOrders() {
+	try {
+		const orders = yield get(`orders`)
+		yield put(fetchOrdersSuccess(orders))
+	} catch (error) {
+		yield put(setAlert({
+			type: 'error',
+			title: 'ERRO AO BUSCAR PEDIDOS',
 			message: JSON.stringify(error),
 		}))
 	}
 }
 
-function* fetchOrders({ payload }) {
+function* fetchUserOrders({ payload }) {
 	try {
 		const orders = yield get(`orders/${payload}`)
-		yield put(fetchOrdersSuccess(orders))
+		yield put(fetchUserOrdersSuccess(orders))
 	} catch (error) {
 		yield put(setAlert({
 			type: 'error',
@@ -71,6 +85,10 @@ function* onFetchOrdersStart() {
 	yield takeLatest(OrderActionTypes.FETCH_ORDERS_START, fetchOrders)
 }
 
+function* onFetchUserOrdersStart() {
+	yield takeLatest(OrderActionTypes.FETCH_USER_ORDERS_START, fetchUserOrders)
+}
+
 function* onFetchStatesStart() {
 	yield takeLatest(OrderActionTypes.FETCH_STATES_START, fetchStates)
 }
@@ -83,6 +101,7 @@ export default function* orderSagas() {
 	yield all([
 		call(onCreateOrderStart),
 		call(onFetchOrdersStart),
+		call(onFetchUserOrdersStart),
 		call(onFetchStatesStart),
 		call(onFetchCitiesStart),
 	])

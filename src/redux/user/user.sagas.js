@@ -54,11 +54,11 @@ function* fetchSongRequests() {
 	try {
 		const songRequests = yield get('songRequests')
 		yield put(fetchSongRequestsSuccess(songRequests))
-	} catch ({ message }) {
+	} catch (error) {
 		yield put(setAlert({
 			type: 'error',
 			title: 'ERRO AO BUSCAR PEDIDOS DE MÚSICA',
-			message,
+			message: JSON.stringify(error),
 		}))
 	}
 }

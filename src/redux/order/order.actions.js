@@ -5,9 +5,18 @@ export const createOrderStart = order => ({
 	payload: order,
 })
 
-export const fetchOrdersStart = userId => ({
-	type: OrderActionTypes.FETCH_ORDERS_START,
+export const fetchUserOrdersStart = userId => ({
+	type: OrderActionTypes.FETCH_USER_ORDERS_START,
 	payload: userId,
+})
+
+export const fetchUserOrdersSuccess = userOrders => ({
+	type: OrderActionTypes.FETCH_USER_ORDERS_SUCCESS,
+	payload: userOrders,
+})
+
+export const fetchOrdersStart = () => ({
+	type: OrderActionTypes.FETCH_ORDERS_START,
 })
 
 export const fetchOrdersSuccess = orders => ({
