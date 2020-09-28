@@ -19,6 +19,7 @@ import FormInput from '../FormInput'
 import CustomButton from '../CustomButton'
 import InlineInputGroup from '../InlineInputGroup'
 import FormSelect from '../FormSelect'
+import FormTextarea from '../FormTextarea'
 import CustomFormSubtitle from '../CustomFormSubtitle'
 import AppLoader from '../AppLoader'
 
@@ -184,6 +185,11 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 						required
 						name="street"
 						placeholder="Rua"
+						onChange={handlePaymentChange}
+					/>
+					<FormTextarea
+						name="message"
+						placeholder="Mensagem para os noivos"
 						onChange={handlePaymentChange}
 					/>
 					<CustomButton

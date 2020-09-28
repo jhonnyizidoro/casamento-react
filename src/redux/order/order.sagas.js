@@ -7,7 +7,7 @@ import { fetchOrdersSuccess, fetchStatesSuccess, fetchCitiesSuccess } from './or
 
 function* createOrder({ payload }) {
 	try {
-		const { id } = yield post('create', payload)
+		const { id } = yield post('orders/create', payload)
 		yield put(setAlert({
 			type: 'success',
 			title: 'PEDIDO CRIADO COM SUCESSO',

@@ -19,13 +19,11 @@ const SongRequestForm = ({ currentUser, insertSongRequestStart, submitting }) =>
 
 	const handleSubmit = event => {
 		event.preventDefault()
-		const { email, uid, displayName } = currentUser
+		const { email, displayName } = currentUser
 		insertSongRequestStart({
 			song,
 			email,
-			uid,
 			displayName,
-			createdAt: new Date(),
 		})
 	}
 

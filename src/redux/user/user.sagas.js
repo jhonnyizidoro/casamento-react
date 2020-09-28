@@ -2,7 +2,8 @@ import { takeLatest, put, all, call } from 'redux-saga/effects'
 import UserActionTypes from './user.types'
 import { signInSuccess, fetchSongRequestsSuccess } from './user.actions'
 import { setAlert, setSubmitting } from '../app/app.actions'
-import { auth, googleProvider, facebookProvider, firestore } from '../../utils/firebase'
+import { auth, googleProvider, facebookProvider } from '../../utils/firebase'
+import { get, post } from '../../utils/api'
 
 function* signInWithFacebook() {
 	try {
@@ -33,36 +34,25 @@ function* signInWithGoogle() {
 function* insertSongRequest({ payload }) {
 	try {
 		yield put(setSubmitting(true))
-		const { uid } = payload
-		const oldSongRequest = yield firestore.collection('songRequests').where('uid', '==', uid).get()
-
-		if (oldSongRequest.empty) {
-			yield firestore.collection('songRequests').add(payload)
-			yield put(setAlert({
-				type: 'success',
-				title: 'PEDIDO DE MÚSICA REALIZADO!',
-			}))
-		} else {
-			yield put(setAlert({
-				type: 'error',
-				title: 'ERRO AO PEDIR MÚSICA',
-				message: 'Cada convidado pode realizar apenas um pedido de música.',
-			}))
-		}
-		yield put(setSubmitting(false))
-	} catch ({ message }) {
+		yield post('songRequests/create', payload)
+		yield put(setAlert({
+			type: 'success',
+			title: 'PEDIDO DE MÚSICA REALIZADO!',
+		}))
+	} catch (error) {
+		const { message } = error
 		yield put(setAlert({
 			type: 'error',
 			title: 'ERRO AO PEDIR MÚSICA',
-			message,
+			message: message || JSON.stringify(error),
 		}))
 	}
+	yield put(setSubmitting(false))
 }
 
 function* fetchSongRequests() {
 	try {
-		const snapshot = yield firestore.collection('songRequests').get()
-		const songRequests = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+		const songRequests = yield get('songRequests')
 		yield put(fetchSongRequestsSuccess(songRequests))
 	} catch ({ message }) {
 		yield put(setAlert({

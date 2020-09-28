@@ -8,7 +8,12 @@ export const post = (route, body) => new Promise((resolve, reject) => {
 			'Content-Type': 'application/json',
 		},
 	})
-	.then(res => resolve(res.json()))
+	.then(res => {
+		if (res.ok) {
+			return resolve(res.json())
+		}
+		res.json().then(error => reject(error))
+	})
 	.catch(error => reject(error))
 })
 

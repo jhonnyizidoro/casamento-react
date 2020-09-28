@@ -29,8 +29,13 @@ const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 				{
 					currentUser ?
 						<>
-							<NavBarItemAsLink exact activeClassName="active" to="/insert-product">INSERIR PRODUTO</NavBarItemAsLink>
-							<NavBarItemAsLink exact activeClassName="active" to="/song-requests">PEDIDOS DE MÚSICA</NavBarItemAsLink>
+							{
+								['jhonny-cwb@hotmail.com', 'jenymenarim@gmail.com', 'leonardovieiradt47@gmail.com'].includes(currentUser.email) &&
+								<>
+									<NavBarItemAsLink exact activeClassName="active" to="/insert-product">INSERIR PRODUTO</NavBarItemAsLink>
+									<NavBarItemAsLink exact activeClassName="active" to="/song-requests">PEDIDOS DE MÚSICA</NavBarItemAsLink>
+								</>
+							}
 							<NavBarItemAsLink exact activeClassName="active" to="/my-orders">MEUS PEDIDOS</NavBarItemAsLink>
 							<NavBarItemAsText onClick={logout}>SAIR</NavBarItemAsText>
 						</>
