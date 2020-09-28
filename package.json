@@ -2,10 +2,7 @@
 	"name": "casamento-react",
 	"version": "0.1.0",
 	"private": true,
-	"dependencies": {
-		"compression": "^1.7.4",
-		"express": "^4.17.1",
-		"express-static-gzip": "^2.0.7",
+	"devDependencies": {
 		"firebase": "^7.15.0",
 		"pagarme": "^4.12.0",
 		"react": "^16.13.1",
@@ -23,8 +20,12 @@
 		"reselect": "^4.0.0",
 		"styled-components": "^5.1.0"
 	},
+	"dependencies": {
+		"compression": "^1.7.4",
+		"express": "^4.17.1"
+	},
 	"scripts": {
-		"start": "node server.js",
+		"start": "npm install --only=prod && node server.js",
 		"dev": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
