@@ -11,7 +11,7 @@ import ProductsPage from './pages/Products'
 import PaymentPage from './pages/Payment'
 import MyOrdersPage from './pages/MyOrders'
 import OrdersPage from './pages/Orders'
-import SongRequestsPage from './pages/SongRequests'
+import ConfirmationsPage from './pages/Confirmations'
 
 const App = () => (
 	<>
@@ -25,7 +25,7 @@ const App = () => (
 			<ProtectedRoute exact path="/payment/:id" component={PaymentPage} />
 			<ProtectedRoute exact path="/my-orders" component={MyOrdersPage} />
 			<ProtectedRoute exact path="/orders" component={OrdersPage} />
-			<ProtectedRoute exact path="/song-requests" component={SongRequestsPage} />
+			<ProtectedRoute exact path="/confirmations" component={ConfirmationsPage} />
 		</Switch>
 	</>
 )

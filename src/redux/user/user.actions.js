@@ -17,16 +17,16 @@ export const logout = () => ({
 	type: UserActionTypes.LOGOUT,
 })
 
-export const insertSongRequestStart = songRequest => ({
-	type: UserActionTypes.INSERT_SONG_REQUEST_START,
-	payload: songRequest,
+export const insertConfirmationStart = confirmation => ({
+	type: UserActionTypes.INSERT_CONFIRMATION_START,
+	payload: confirmation,
 })
 
-export const fetchSongRequestsStart = () => ({
-	type: UserActionTypes.FETCH_SONG_REQUESTS_START,
+export const fetchConfirmationsStart = () => ({
+	type: UserActionTypes.FETCH_CONFIRMATIONS_START,
 })
 
-export const fetchSongRequestsSuccess = songRequests => ({
-	type: UserActionTypes.FETCH_SONG_REQUESTS_SUCCESS,
-	payload: songRequests,
+export const fetchConfirmationsSuccess = confirmations => ({
+	type: UserActionTypes.FETCH_CONFIRMATIONS_SUCCESS,
+	payload: confirmations,
 })

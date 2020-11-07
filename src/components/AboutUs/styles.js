@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { Colors, Fonts, Shadows } from '../../assets/styles/variables'
@@ -62,6 +62,7 @@ export const AboutUsSubtitle = styled.h3`
 `
 
 export const AboutUsText = styled.p`
+	line-height: 1.6;
 	padding: 0 10px;
 	text-align: justify;
 `
@@ -90,7 +91,7 @@ export const AboutUsContact = styled.div`
 	`}
 `
 
-export const AboutUsContactBlock = styled.div`
+const AboutUsContactBlockStyles = css`
 	color: ${Colors.PURPLE};
 	display: flex;
 	flex-grow: 1;
@@ -100,3 +101,6 @@ export const AboutUsContactBlock = styled.div`
 		padding: 10px 0;
 	`}
 `
+
+export const AboutUsContactBlock = styled.div`${AboutUsContactBlockStyles}`
+export const AboutUsContactBlockLink = styled.a`${AboutUsContactBlockStyles}`

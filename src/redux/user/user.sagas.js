@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects'
 import UserActionTypes from './user.types'
-import { signInSuccess, fetchSongRequestsSuccess } from './user.actions'
+import { signInSuccess, fetchConfirmationsSuccess } from './user.actions'
 import { setAlert, setSubmitting } from '../app/app.actions'
 import { auth, googleProvider, facebookProvider } from '../../utils/firebase'
 import { get, post } from '../../utils/api'
@@ -31,33 +31,33 @@ function* signInWithGoogle() {
 	}
 }
 
-function* insertSongRequest({ payload }) {
+function* insertConfirmation({ payload }) {
 	try {
 		yield put(setSubmitting(true))
-		yield post('songRequests/create', payload)
+		yield post('confirmations/create', payload)
 		yield put(setAlert({
 			type: 'success',
-			title: 'PEDIDO DE MÚSICA REALIZADO!',
+			title: 'CONFIRMAÇÃO REALIZADA!',
 		}))
 	} catch (error) {
 		const { message } = error
 		yield put(setAlert({
 			type: 'error',
-			title: 'ERRO AO PEDIR MÚSICA',
+			title: 'ERRO AO CONFIRMAR',
 			message: message || JSON.stringify(error),
 		}))
 	}
 	yield put(setSubmitting(false))
 }
 
-function* fetchSongRequests() {
+function* fetchConfirmations() {
 	try {
-		const songRequests = yield get('songRequests')
-		yield put(fetchSongRequestsSuccess(songRequests))
+		const confirmations = yield get('confirmations')
+		yield put(fetchConfirmationsSuccess(confirmations))
 	} catch (error) {
 		yield put(setAlert({
 			type: 'error',
-			title: 'ERRO AO BUSCAR PEDIDOS DE MÚSICA',
+			title: 'ERRO AO BUSCAR CONFIRMAÇÕES',
 			message: JSON.stringify(error),
 		}))
 	}
@@ -71,19 +71,19 @@ function* onSignInWithGoogleStart() {
 	yield takeLatest(UserActionTypes.SIGN_IN_WITH_GOOGLE_START, signInWithGoogle)
 }
 
-function* onInsertSongRequestStart() {
-	yield takeLatest(UserActionTypes.INSERT_SONG_REQUEST_START, insertSongRequest)
+function* onInsertConfirmationStart() {
+	yield takeLatest(UserActionTypes.INSERT_CONFIRMATION_START, insertConfirmation)
 }
 
-function* onFetchSongRequestsStart() {
-	yield takeLatest(UserActionTypes.FETCH_SONG_REQUESTS_START, fetchSongRequests)
+function* onFetchConfirmationsStart() {
+	yield takeLatest(UserActionTypes.FETCH_CONFIRMATIONS_START, fetchConfirmations)
 }
 
 export default function* userSagas() {
 	yield all([
 		call(onSignInWithFacebookStart),
 		call(onSignInWithGoogleStart),
-		call(onInsertSongRequestStart),
-		call(onFetchSongRequestsStart),
+		call(onInsertConfirmationStart),
+		call(onFetchConfirmationsStart),
 	])
 }

@@ -33,7 +33,7 @@ const CustomHeader = () => (
 			<CustomHeaderTitle>Jenyfer &<br />Leonardo</CustomHeaderTitle>
 			<CustomHeaderDate>
 				<CustomHeaderTextOrange>-</CustomHeaderTextOrange>
-				21
+				20
 				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>
 				02
 				<CustomHeaderTextOrange>.</CustomHeaderTextOrange>

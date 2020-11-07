@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectSubmitting } from '../../redux/app/app.selectors'
-import { insertSongRequestStart } from '../../redux/user/user.actions'
+import { insertConfirmationStart } from '../../redux/user/user.actions'
 
 import CustomForm from '../CustomForm'
 import FormInput from '../FormInput'
@@ -12,25 +12,38 @@ import CustomButton from '../CustomButton'
 import CustomDivider from '../CustomDivider'
 import CustomContainer from '../CustomContainer'
 
-const SongRequestForm = ({ currentUser, insertSongRequestStart, submitting }) => {
-	const [song, setSong] = useState(null)
+const ConfirmationForm = ({ currentUser, insertConfirmationStart, submitting }) => {
+	const [confirmation, setConfirmation] = useState(null)
 
-	const handleChange = ({ target: { value } }) => setSong(value)
+	const handleChange = ({ target }) => {
+		const { name, value } = target
+		setConfirmation({
+			...confirmation,
+			[name]: value,
+		})
+	}
 
 	const handleSubmit = event => {
 		event.preventDefault()
 		const { email, displayName } = currentUser
-		insertSongRequestStart({
-			song,
+		insertConfirmationStart({
 			email,
 			displayName,
+			...confirmation,
 		})
 	}
 
 	return (
 		<CustomContainer>
 			<CustomDivider />
-			<CustomForm onSubmit={handleSubmit} title="Peça uma música">
+			<CustomForm onSubmit={handleSubmit} title="Confirmação de presença">
+				<FormInput
+					name="guest"
+					placeholder="Nome do convidado"
+					onChange={handleChange}
+					required
+					disabled={currentUser === null}
+				/>
 				<FormInput
 					name="song"
 					placeholder="Pedido de música"
@@ -48,7 +61,7 @@ const SongRequestForm = ({ currentUser, insertSongRequestStart, submitting }) =>
 							CONFIRMAR PEDIDO
 						</CustomButton>
 						:
-						<CustomButton to="/sign-in" color="orange">FAÇA O LOGIN PARA PEDIR MÚSICA</CustomButton>
+						<CustomButton to="/sign-in" color="orange">FAÇA O LOGIN PARA CONFIRMAR</CustomButton>
 				}
 			</CustomForm>
 			<CustomDivider />
@@ -62,7 +75,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-	insertSongRequestStart: songRequest => dispatch(insertSongRequestStart(songRequest)),
+	insertConfirmationStart: confirmation => dispatch(insertConfirmationStart(confirmation)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SongRequestForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationForm)

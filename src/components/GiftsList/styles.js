@@ -23,12 +23,11 @@ export const GiftsListHeader = styled.div`
 `
 
 export const GiftsListSection = styled.div`
+	border-bottom: 1px solid ${Colors.LIGHT};
 	color: ${Colors.DARK};
+	margin-bottom: 80px;
 	text-align: center;
 	padding: 80px 0;
-	&:nth-child(1) {
-		border-bottom: 1px solid ${Colors.LIGHT};
-	}
 `
 
 export const GiftsListTitle = styled.h2`

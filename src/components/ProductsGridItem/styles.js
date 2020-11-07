@@ -13,7 +13,7 @@ export const ProductsGridItemElement = styled.div`
 `
 
 export const ProductsGridItemFigure = styled.figure`
-	padding-top: 75%;
+	padding-top: 100%;
 	position: relative;
 `
 
