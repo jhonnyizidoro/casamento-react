@@ -58,7 +58,7 @@ const ConfirmationForm = ({ currentUser, insertConfirmationStart, submitting }) 
 							color="orange"
 							isLoading={submitting}
 						>
-							CONFIRMAR PEDIDO
+							CONFIRMAR PRESENÇA
 						</CustomButton>
 						:
 						<CustomButton to="/sign-in" color="orange">FAÇA O LOGIN PARA CONFIRMAR</CustomButton>

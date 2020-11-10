@@ -1,14 +1,16 @@
 import pagarme from 'pagarme'
 
+const ENCRYPTION_KEY = 'ek_live_3tFIfZrd4tYSylT9tJ3Tv072YM5RYS'
+
 export const hash = ({ cardNumber, holderName, expirationDate, cardCvv }) => new Promise(resolve => {
-	pagarme.client.connect({ encryption_key: 'ek_test_OnXj9m2qrxGiv1lq0k4SCwVUHgwMuH' })
-	.then(client => client.security.encrypt({
-		card_number: cardNumber,
-		card_holder_name: holderName,
-		card_expiration_date: expirationDate,
-		card_cvv: cardCvv,
-	}))
-	.then(hash => resolve(hash))
+	pagarme.client.connect({ encryption_key: ENCRYPTION_KEY })
+		.then(client => client.security.encrypt({
+			card_number: cardNumber,
+			card_holder_name: holderName,
+			card_expiration_date: expirationDate,
+			card_cvv: cardCvv,
+		}))
+		.then(hash => resolve(hash))
 })
 
 export const getStatus = status => {
