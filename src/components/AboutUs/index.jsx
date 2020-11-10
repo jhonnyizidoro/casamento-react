@@ -40,7 +40,7 @@ const AboutUs = () => (
 						<CustomIcon fill="purple" marginRight={5}>
 							<CalendarIcon />
 						</CustomIcon>
-						01/01/1997
+						09/04/1998
 					</AboutUsContactBlock>
 					<AboutUsContactBlockLink href="https://www.facebook.com/leonardo.vieira.50309" target="_blank" rel="noopener">
 						<CustomIcon fill="purple" marginRight={5}>
