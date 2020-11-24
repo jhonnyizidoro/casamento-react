@@ -66,4 +66,5 @@ const navBarItemStyles = () => css`
 `
 
 export const NavBarItemAsLink = styled(NavLink)`${navBarItemStyles}`
+export const NavBarItemAsAnchor = styled.a`${navBarItemStyles}`
 export const NavBarItemAsText = styled.span`${navBarItemStyles}`

@@ -17,6 +17,7 @@ import {
 	NavBarLinks,
 	NavBarItemAsLink,
 	NavBarItemAsText,
+	NavBarItemAsAnchor,
 } from './styles'
 
 const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
@@ -25,7 +26,14 @@ const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 			<NavBarLogoImage src={LogoImage} alt="Logo Jenyfer e Leonardo" />
 			<NavBarLinks isActive={navBarState} onClick={() => setNavBarState(!navBarState)}>
 				<NavBarItemAsLink exact activeClassName="active" to="/">INÍCIO</NavBarItemAsLink>
-				<NavBarItemAsLink exact activeClassName="active" to="/products">PRODUTOS</NavBarItemAsLink>
+				<NavBarItemAsLink exact activeClassName="active" to="/products">PRESENTES</NavBarItemAsLink>
+				<NavBarItemAsAnchor
+					href="https://kaulefotografia.pixieset.com/jenyeleo/"
+					target="_blank"
+					rel="noopener"
+				>
+					BOOK DE FOTOS
+				</NavBarItemAsAnchor>
 				{
 					currentUser ?
 						<>

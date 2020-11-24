@@ -52,7 +52,7 @@ const ProductsGrid = ({ products, fetchProductsStart }) => {
 		(
 			<CustomContainer>
 				<ProductsGridHeader>
-					<ProductsGridTitle>Produtos disponíveis</ProductsGridTitle>
+					<ProductsGridTitle>Lista de presentes</ProductsGridTitle>
 					<InlineInputGroup>
 						<FormSelect
 							aria-label="Filtrar por categoria"
