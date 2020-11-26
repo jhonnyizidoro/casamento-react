@@ -22,7 +22,9 @@ export const PhotoGalleryImage = styled(LazyLoadImage)`
 
 export const PhotoGalleryButtonContainer = styled.div`
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #FFFFFF);
+	opacity: ${({ buttonOpacity }) => buttonOpacity};
 	padding-top: 60px;
 	text-align: center;
 	transform: translateY(-100%);
+	transition: 1s;
 `

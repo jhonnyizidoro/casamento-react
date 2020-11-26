@@ -32,7 +32,7 @@ const CustomNavBar = ({ currentUser, logout, navBarState, setNavBarState }) => (
 					target="_blank"
 					rel="noopener"
 				>
-					BOOK DE FOTOS
+					ENSAIO DE FOTOS
 				</NavBarItemAsAnchor>
 				{
 					currentUser ?

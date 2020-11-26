@@ -65,7 +65,7 @@ const AboutUs = () => (
 			<AboutUsSection>
 				<AboutUsContent>
 					<AboutUsSubtitle>Jenyfer</AboutUsSubtitle>
-					<AboutUsText>Uma mulher incrível que chegou em minha vida e me mostrou a felicidade que tanto se fala e o amor que tanto se procura. Admirável pela sua garra, dedicações, conquistas e disciplinas. Cativante no seu falar, agir e ao lidar com o próximo. Encantadora na sua beleza e no seu jeito princesa de ser, oh mulher linda, difícil não se apaixonar todos os dias. Grato eternamente em ter essa pessoa incrível ao meu lado.</AboutUsText>
+					<AboutUsText>Uma mulher incrível que chegou em minha vida e me mostrou a felicidade que tanto se fala e o amor que tanto se procura. Admirável pela sua garra, dedicações, conquistas e disciplinas. Cativante no seu falar, agir e ao lidar com o próximo, encantadora na sua beleza e no seu jeito princesa de ser, oh mulher linda, difícil não me apaixonar todos os dias. Grato eternamente em ter essa pessoa incrível ao meu lado.</AboutUsText>
 				</AboutUsContent>
 				<AboutUsImage src={JenyferImage} alt="Jenyfer" />
 				<AboutUsContact>
