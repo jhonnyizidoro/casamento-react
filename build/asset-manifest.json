@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.9509e2d7.chunk.js",
-    "main.js.map": "/static/js/main.9509e2d7.chunk.js.map",
+    "main.js": "/static/js/main.4ede63e7.chunk.js",
+    "main.js.map": "/static/js/main.4ede63e7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.63e4bb3f.js",
     "runtime-main.js.map": "/static/js/runtime-main.63e4bb3f.js.map",
     "static/js/2.2a951f6a.chunk.js": "/static/js/2.2a951f6a.chunk.js",
     "static/js/2.2a951f6a.chunk.js.map": "/static/js/2.2a951f6a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.99e3f798f2b54f448f068f1fd5b8b989.js": "/precache-manifest.99e3f798f2b54f448f068f1fd5b8b989.js",
+    "precache-manifest.46a4f8073b1057579963505c9763adb5.js": "/precache-manifest.46a4f8073b1057579963505c9763adb5.js",
     "service-worker.js": "/service-worker.js",
     "static/js/2.2a951f6a.chunk.js.LICENSE.txt": "/static/js/2.2a951f6a.chunk.js.LICENSE.txt",
     "static/media/background.jpg": "/static/media/background.6d3906ba.jpg",
@@ -248,7 +248,7 @@
     "static/media/leonardo.jpg": "/static/media/leonardo.dd5c5d59.jpg",
     "static/media/loader.0eb1bc33.svg": "/static/media/loader.0eb1bc33.svg",
     "static/media/location-pin.a39d65b3.svg": "/static/media/location-pin.a39d65b3.svg",
-    "static/media/logo.png": "/static/media/logo.4360d7ce.png",
+    "static/media/logo.png": "/static/media/logo.2e9ec379.png",
     "static/media/no-image.png": "/static/media/no-image.aca2ca02.png",
     "static/media/success.65ac0eda.svg": "/static/media/success.65ac0eda.svg",
     "static/media/whatsapp.7c406239.svg": "/static/media/whatsapp.7c406239.svg",
@@ -257,6 +257,6 @@
   "entrypoints": [
     "static/js/runtime-main.63e4bb3f.js",
     "static/js/2.2a951f6a.chunk.js",
-    "static/js/main.9509e2d7.chunk.js"
+    "static/js/main.4ede63e7.chunk.js"
   ]
 }
