@@ -1,0 +1,22 @@
+{
+	"@context": "https://www.schema.org",
+	"@type": "Event",
+	"name": "Casamento Jenyfer e Leonardo",
+	"url": "https://casamentoleoejeny.com.br/",
+	"description": "Nós vamos nos casar, visite nosso site. Aqui você encontra fotos, nossa história, lista de presentes e muito mais.",
+	"startDate": "02/20/2021 17:00PM",
+	"endDate": "02/21/2021 03:00AM",
+	"location": {
+		"@type": "Place",
+		"name": "Espaço Querência",
+		"sameAs": "http://www.querenciagaucha.com.br/",
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": "R. Marina Coelho, 330",
+			"addressLocality": "São José dos Pinhais",
+			"addressRegion": "PR",
+			"postalCode": "83075-297",
+			"addressCountry": "BRA"
+		}
+	}
+}
