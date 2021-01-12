@@ -18,25 +18,42 @@ const UserOrderList = ({ orders, fetchOrdersStart }) => {
 
 	return orders ?
 		(
-			<CustomTable
-				title={orders.length ? 'Todos os pedidos' : 'Nenhum pedido realizado'}
-				labels={orders.length ? [
-					'ID',
-					'E-mail',
-					'Item',
-					'Status',
-					'Ultima atualização',
-					'Mensagem',
-				] : []}
-				items={orders.map(({ userEmail, transaction, product, value, status, updatedAt, message }) => [
-					transaction,
-					userEmail,
-					`${product} - R$${value.toFixed(2)}`,
-					getStatus(status),
-					formattedDate(updatedAt),
-					message,
-				])}
-			/>
+			<>
+				<CustomTable
+					title="Pedidos aprovados"
+					labels={[
+						'ID',
+						'E-mail',
+						'Item',
+						'Status',
+						'Mensagem',
+					]}
+					items={orders.filter(({ status }) => status === 'paid').map(({ userEmail, transaction, product, value, status, updatedAt, message }) => [
+						transaction,
+						userEmail,
+						`R$${value.toFixed(2)} - ${product}`,
+						`${getStatus(status)} - ${formattedDate(updatedAt)}`,
+						message,
+					])}
+				/>
+				<CustomTable
+					title="Pedidos em andamento"
+					labels={[
+						'ID',
+						'E-mail',
+						'Item',
+						'Status',
+						'Mensagem',
+					]}
+					items={orders.filter(({ status }) => status !== 'paid').map(({ userEmail, transaction, product, value, status, updatedAt, message }) => [
+						transaction,
+						userEmail,
+						`R$${value.toFixed(2)} - ${product}`,
+						`${getStatus(status)} - ${formattedDate(updatedAt)}`,
+						message,
+					])}
+				/>
+			</>
 		)
 		:
 		<AppLoader />
