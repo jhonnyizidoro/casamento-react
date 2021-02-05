@@ -12,7 +12,7 @@ import {
 } from './styles'
 
 const EventCountdown = () => {
-	const date = new Date('2021-02-20 15:30:00').getTime()
+	const date = new Date('2021-02-20T15:30:00-03:00').getTime()
 	const [chronometer, setChronometer] = useState({})
 
 	useEffect(() => {
