@@ -162,7 +162,7 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 							name="state"
 							onChange={handleStateChange}
 							required
-							items={states.map(({ sigla, nome }) => ({ label: nome, value: sigla }))}
+							items={states.map(({ name, abbreviation }) => ({ label: name, value: abbreviation }))}
 						/>
 					</InlineInputGroup>
 					<InlineInputGroup>
@@ -172,7 +172,7 @@ const PaymentForm = ({ product, fetchProductStart, currentUser, createOrderStart
 							name="city"
 							onChange={handlePaymentChange}
 							required
-							items={cities ? cities.map(({ nome }) => ({ label: nome, value: nome })) : []}
+							items={cities ? cities.map(({ name }) => ({ label: name, value: name })) : []}
 						/>
 						<FormInput
 							required

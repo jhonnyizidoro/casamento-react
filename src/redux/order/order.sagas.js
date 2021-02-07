@@ -2,7 +2,6 @@ import { takeLatest, put, all, call } from 'redux-saga/effects'
 import OrderActionTypes from './order.types'
 import { setAlert, setSubmitting } from '../app/app.actions'
 import { post, get } from '../../utils/api'
-import { getFromIBGE } from '../../utils/ibge'
 import { fetchOrdersSuccess, fetchStatesSuccess, fetchCitiesSuccess, fetchUserOrdersSuccess } from './order.actions'
 
 function* createOrder({ payload }) {
@@ -53,7 +52,7 @@ function* fetchUserOrders({ payload }) {
 
 function* fetchStates() {
 	try {
-		const states = yield getFromIBGE('localidades/estados')
+		const states = yield get('states')
 		yield put(fetchStatesSuccess(states))
 	} catch (error) {
 		yield put(setAlert({
@@ -66,7 +65,7 @@ function* fetchStates() {
 
 function* fetchCities({ payload }) {
 	try {
-		const cities = yield getFromIBGE(`localidades/estados/${payload}/distritos`)
+		const cities = yield get(`states/cities/${payload}`)
 		yield put(fetchCitiesSuccess(cities))
 	} catch (error) {
 		yield put(setAlert({
