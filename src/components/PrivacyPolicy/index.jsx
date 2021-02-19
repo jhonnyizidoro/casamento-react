@@ -30,6 +30,8 @@ const PrivacyPolicy = () => <PrivacyPolicyWrapper>
 	<PrivacyPolicySubtitle>Mais informações</PrivacyPolicySubtitle>
 	<PrivacyPolicyParagraph>Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.</PrivacyPolicyParagraph>
 	<PrivacyPolicyParagraph>Esta política é efetiva a partir de <PrivacyPolicyListStrong>Fevereiro/2021</PrivacyPolicyListStrong>.</PrivacyPolicyParagraph>
+	<PrivacyPolicySubtitle>Para excluir seus dados</PrivacyPolicySubtitle>
+	<PrivacyPolicyParagraph>Para excluir todos os dados armazenados vinculados ao seu e-mail, basta entrar em contato conosco.</PrivacyPolicyParagraph>
 </PrivacyPolicyWrapper>
 
 export default PrivacyPolicy
