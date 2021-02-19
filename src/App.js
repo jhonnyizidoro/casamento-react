@@ -12,6 +12,7 @@ import PaymentPage from './pages/Payment'
 import MyOrdersPage from './pages/MyOrders'
 import OrdersPage from './pages/Orders'
 import ConfirmationsPage from './pages/Confirmations'
+import PrivacyPolicyPage from './pages/PrivacyPolicy'
 
 const App = () => (
 	<>
@@ -26,6 +27,7 @@ const App = () => (
 			<ProtectedRoute exact path="/my-orders" component={MyOrdersPage} />
 			<ProtectedRoute exact path="/orders" component={OrdersPage} />
 			<ProtectedRoute exact path="/confirmations" component={ConfirmationsPage} />
+			<ProtectedRoute exact path="/privacy-policy" component={PrivacyPolicyPage} />
 		</Switch>
 	</>
 )
