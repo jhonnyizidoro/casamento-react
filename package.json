@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"devDependencies": {
-		"firebase": "^7.15.0",
+		"firebase": "^10.9.0",
 		"pagarme": "^4.12.0",
 		"react": "^16.13.1",
 		"react-currency-format": "^1.0.0",
